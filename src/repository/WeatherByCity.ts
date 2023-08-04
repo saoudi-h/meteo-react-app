@@ -14,7 +14,7 @@ export default class WeatherByCity {
   private getUrl(): string {
     return `https://api.openweathermap.org/data/2.5/weather?lat=${this._lat}&lon=${this._lon}&appid=${this._appId}`;
   }
-  async getWeather(city) {
+  async getWeather(city:string) {
     if (city && city === "") {
       console.error("");
       return;

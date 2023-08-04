@@ -1,10 +1,9 @@
-import React from 'react'
 import './Home.css'
 
 const Home = () => {
     return (
         <>
-            <h1 className="title">Acueill</h1>
+            <h1 className="title">Acueil</h1>
         </>
 
     )
