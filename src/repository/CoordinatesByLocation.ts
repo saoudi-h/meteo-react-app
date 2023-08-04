@@ -2,21 +2,17 @@ export default class CoordinatesByLocation {
   private _cityName: string;
   private _stateCode: string;
   private _countryCode: string;
-  private _appId: string;
-  private _limit: number;
+  private _appId: string = "ac20a75cd3a8aa490c0bae7276c9f3f2";
+  private _limit: number = 1;
 
   constructor(
     cityName: string = "",
     stateCode: string = "",
-    countryCode: string = "",
-    appId: string = "",
-    limit: number = 0
+    countryCode: string = ""
   ) {
     this._cityName = cityName;
     this._stateCode = stateCode;
     this._countryCode = countryCode;
-    this._appId = appId;
-    this._limit = limit;
   }
 
   get cityName(): string {
@@ -67,5 +63,25 @@ export default class CoordinatesByLocation {
 
   private getUrl(): string {
     return `http://api.openweathermap.org/geo/1.0/direct?q=${this._cityName},${this._stateCode},${this._countryCode}&limit=${this._limit}&appid=${this._appId}`;
+  }
+
+  async getCity(): Promise<any> {
+    const url = this.getUrl();
+
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const response = await fetch(url, options);
+      const jsonData = await response.json();
+      return jsonData;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
   }
 }
