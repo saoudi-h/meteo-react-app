@@ -19,8 +19,7 @@ function App() {
         <Route path='/weather' element={<WeatherPage />} />
         <Route path='/about' element={<About />} />
         <Route path='/weather/:city' element={<WeatherCityPage />} />
-        <Route path='*' element={<NotFound/>}/>
-
+        <Route path='*' element={<NotFound />} />
         <Route />
       </Routes>
       <Footer />
