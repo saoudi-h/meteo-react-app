@@ -21,7 +21,7 @@ export default class WeatherByCity {
     }
   }
   private async getWeahterByCoordinate(): Promise<any> {
-    if (this._lat === "" || this._lon === "") {
+    if (this._lat === 0 || this._lon === 0) {
       console.error("");
       return;
     }
