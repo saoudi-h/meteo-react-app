@@ -35,7 +35,7 @@ export default class CoordinatesByLocation {
   }
 
   private getUrl(): string {
-    return `http://api.openweathermap.org/geo/1.0/direct?q=${this._cityName}&limit=${this._limit}&appid=${this._appId}`;
+    return `https://api.openweathermap.org/geo/1.0/direct?q=${this._cityName}&limit=${this._limit}&appid=${this._appId}`;
   }
 
   async getCoordinates(city = ""): Promise<any> {
@@ -43,18 +43,15 @@ export default class CoordinatesByLocation {
       this._cityName = city;
     }
     const url = this.getUrl();
+    console.log(url);
 
     const options = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      method: "GET"
     };
 
     try {
       const response = await fetch(url, options);
-      const jsonData = await response.json();
-      return jsonData;
+      return await response.json();
     } catch (error) {
       console.error(error);
       throw error;
