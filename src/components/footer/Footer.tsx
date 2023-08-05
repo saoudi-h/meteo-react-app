@@ -1,15 +1,13 @@
 import React from 'react'
 import './Footer.scss'
+import ToolDevList from './toolDevList/ToolDevList'
 
 const Footer: React.FC = () => {
   return (
     <footer className="footer">
       <div className="footer-tools">
-        <h3>Outils utilisés</h3>
-        <ul>
-          <li>React</li>
-          <li>APIs météo</li>
-        </ul>
+        <ToolDevList/>
+        
       </div>
       <div className="footer-links">
         <h3>Liens</h3>
