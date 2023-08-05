@@ -15,44 +15,35 @@ export default class WeatherByCity {
     return `http://api.openweathermap.org/data/2.5/weather?lat=${this._lat}&lon=${this._lon}&appid=${this._appId}`;
   }
   async getWeather(city: string) {
-    console.log("getWeather");
     if (city && city === "") {
       console.error("error");
       return;
     }
-    await this.coorindateByLocation
+    const data = await this.coorindateByLocation
       .getCoordinates(city)
-      .then((data) => console.log(data));
-    // console.log(data);
+      .then((data) => data);
+    const { lat, lon } = data[0];
+    if (lat && lon && lat >= 0 && lon >= lon) {
+      this._lat = lat;
+      this._lon = lon;
+      const jsonData = this.getWeahterByCoordinate();
+      return jsonData;
+    }
   }
-  private async getWeahterByCoordinate(): Promise<any> {
+  private async getWeahterByCoordinate() {
     if (this._lat === 0 || this._lon === 0) {
       console.error("");
       return;
     }
     const url = this.getUrl();
     const options = {
-      mode: "cors",
       method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
     };
 
     try {
-      const response = await fetch(url, {
-        mode: "cors",
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-      const jsonData = await response.json();
-      return jsonData;
+      const response = await fetch(url, options);
+      return await response.json();
     } catch (error) {
-      console.log("mon erreur : : : ");
       console.error(error);
       throw error;
     }

@@ -43,8 +43,6 @@ export default class CoordinatesByLocation {
       this._cityName = city;
     }
     const url = this.getUrl();
-    console.log(url);
-
     const options = {
       method: "GET"
     };
