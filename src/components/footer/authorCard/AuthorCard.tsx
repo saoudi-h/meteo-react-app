@@ -1,5 +1,5 @@
 import React from 'react'
-import './AuthorCard.scss'
+import './AuthorCard.sass'
 import GithubSvg from '../../icons/GithubSvg'
 import TwitterSvg from '../../icons/TwitterSvg'
 import LinkedInSvg from '../../icons/LinkedInSvg'

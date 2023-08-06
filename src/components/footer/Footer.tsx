@@ -1,9 +1,9 @@
 import React from 'react'
-import './Footer.scss'
+import './Footer.sass'
 import ToolDevList from './toolDevList/ToolDevList'
 import AuthorCard from './authorCard/AuthorCard'
 import { useTheme } from '../../contexts/ThemeContext'
-import { classNames } from '../lib/classnames'
+import { classNames } from '../../lib/classnames'
 const Footer: React.FC = () => {
   const { theme } = useTheme();
   return (

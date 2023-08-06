@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import './CityCardWeather.sass'
 
 interface CityCardWeatherProps {
   weatherData: any;

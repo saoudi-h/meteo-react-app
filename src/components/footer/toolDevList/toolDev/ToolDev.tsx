@@ -1,11 +1,11 @@
 import React from 'react'
-import './ToolDev.scss'
+import './ToolDev.sass'
 
 export interface ToolDevProps {
     name: string;
     children: React.ReactNode;
 }
-const ToolDev: React.FC<ToolDevProps> = ({ name,children }) => {
+const ToolDev: React.FC<ToolDevProps> = ({ name, children }) => {
 
     return (
         <div className="tool-card">

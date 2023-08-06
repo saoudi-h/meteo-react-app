@@ -1,0 +1,54 @@
+@use '../../styles/colors' as *
+
+.footer
+	background-color: $primary-200
+	color: black
+	padding: 20px
+	display: flex
+	flex-wrap: wrap
+	justify-content: space-between
+	margin-top: auto
+
+	&.dark
+		background: $primary-950
+
+h3
+	font-size: 18px
+	margin-bottom: 10px
+
+ul
+	list-style: none
+	padding-left: 0
+
+	li
+		margin-bottom: 5px
+
+		a
+			text-decoration: none
+
+	&-legal
+		flex-basis: 100%
+		margin-top: 20px
+		border-top: 1px solid #555
+		padding-top: 10px
+		font-size: 14px
+
+.logo
+	max-width: 50px
+	margin-right: 10px
+
+.about-content
+	display: flex
+	align-items: center
+
+.social-links
+	a
+		margin-right: 10px
+
+	@media screen and (max-width: 768px)
+		flex-direction: column
+
+		&-legal
+			margin-top: 0
+			padding-top: 0
+			border-top: none

@@ -1,6 +1,5 @@
-import React from 'react'
 import ToolDev, { ToolDevProps } from './toolDev/ToolDev'
-import './ToolDevList.scss'
+import './ToolDevList.sass'
 import ReactSvg from '../../icons/ReactSvg'
 import ReactRouterSvg from '../../icons/ReactRouterSvg'
 import SassSvg from '../../icons/SassSvg'
