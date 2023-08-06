@@ -1,4 +1,3 @@
-import './App.css';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 
@@ -8,11 +7,12 @@ import Home from './pages/home/Home';
 import WeatherPage from './pages/weatherPage/WeatherPage';
 import WeatherCityPage from './pages/weatherCityPage/WeatherCityPage';
 import NotFound from './pages/notFound/NotFound';
+import { ThemeProvider } from './contexts/ThemeContext';
 
 
 function App() {
   return (
-    <div className="App">
+    <ThemeProvider>
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -23,7 +23,8 @@ function App() {
         <Route />
       </Routes>
       <Footer />
-    </div>
+    </ThemeProvider>
+
   );
 }
 
