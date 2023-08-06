@@ -1,5 +1,5 @@
 import React from 'react'
-import './Header.scss'
+import './Header.sass'
 import { Link } from 'react-router-dom'
 import ToggleTheme from './toggleTheme/ToggleTheme'
 
@@ -8,7 +8,7 @@ const Header: React.FC = () => {
         <header>
             <nav>
                 <ul>
-                    <li><Link to="/home" className="link">Accueil</Link></li>
+                    <li><Link to="/" className="link">Accueil</Link></li>
                     <li><Link to="/weather" className="link">Meteo</Link></li>
                     <li><Link to="/about" className="link">About</Link></li>
                 </ul>
