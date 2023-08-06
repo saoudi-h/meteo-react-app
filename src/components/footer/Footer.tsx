@@ -2,13 +2,15 @@ import React from 'react'
 import './Footer.scss'
 import ToolDevList from './toolDevList/ToolDevList'
 import AuthorCard from './authorCard/AuthorCard'
-
+import { useTheme } from '../../contexts/ThemeContext'
+import { classNames } from '../lib/classnames'
 const Footer: React.FC = () => {
+  const { theme } = useTheme();
   return (
-    <footer className="footer">
+    <footer className={classNames('footer', theme)}>
       <div className="footer-tools">
-        <ToolDevList/>
-        
+        <ToolDevList />
+
       </div>
       <div className="footer-links">
         <h3>Liens</h3>
@@ -16,7 +18,7 @@ const Footer: React.FC = () => {
           <li><a href="https://github.com/votre-utilisateur/votre-projet">GitHub du projet</a></li>
         </ul>
       </div>
-      <AuthorCard/>
+      <AuthorCard />
       <div className="footer-legal">
         <h3>Mentions légales</h3>
         <p>© COPYRIGHT {new Date().getFullYear()}<br /></p>
