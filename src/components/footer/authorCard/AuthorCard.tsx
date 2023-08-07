@@ -4,9 +4,13 @@ import GithubSvg from '../../icons/GithubSvg'
 import TwitterSvg from '../../icons/TwitterSvg'
 import LinkedInSvg from '../../icons/LinkedInSvg'
 import InstagramSvg from '../../icons/InstagramSvg'
+import { useTheme } from '../../../contexts/ThemeContext'
+import { classNames } from '../../../lib/classnames'
 
 
 const AuthorCard: React.FC = () => {
+  const {theme} = useTheme();
+
   const authorData = {
     name: "Hakim SAOUDI",
     logoUrl: "/svg/logo.svg",
@@ -22,7 +26,7 @@ const AuthorCard: React.FC = () => {
     }
   }
   return (
-    <div className="author">
+    <div className={classNames("author",theme)}>
 
       <div className="author-presentation">
 

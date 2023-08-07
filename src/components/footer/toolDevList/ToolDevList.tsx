@@ -1,4 +1,4 @@
-import ToolDev, { ToolDevProps } from './toolDev/ToolDev'
+import ToolDev, { ToolDevProps } from './toolCard/ToolCard'
 import './ToolDevList.sass'
 import ReactSvg from '../../icons/ReactSvg'
 import ReactRouterSvg from '../../icons/ReactRouterSvg'
