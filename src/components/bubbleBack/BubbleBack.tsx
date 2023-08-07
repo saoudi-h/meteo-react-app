@@ -6,11 +6,11 @@ import { useTrail, animated } from '@react-spring/web';
 const bubbleList = [
     {
         constConfig: {
-            diameter: "300px",
+            diameter: "200px",
             color: "#90e0ef",
         },
         xy: [700, 0],
-        config: { mass: 10, tension: 50, friction: 50 },
+        config: { mass: 10, tension: 80, friction: 50 },
     },
     {
         constConfig: {
@@ -18,7 +18,15 @@ const bubbleList = [
             color: "#a637cc",
         },
         xy: [200, 0],
-        config: { mass: 10, tension: 60, friction: 50 },
+        config: { mass: 10, tension: 70, friction: 50 },
+    },
+    {
+        constConfig: {
+            diameter: "80px",
+            color: "#f8ae26ff",
+        },
+        xy: [200, 400],
+        config: { mass: 10, tension: 50, friction: 500 },
     },
 ];
 

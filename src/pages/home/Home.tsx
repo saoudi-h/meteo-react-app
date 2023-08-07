@@ -10,6 +10,7 @@ const Home = () => {
     }
     return (
         <main className="home" onMouseMove={handleMouseMove}>
+            <img src="/hero/hero_weather_2.png" alt="hero" className="home__hero" />
 
             <div className="container exhero">
 

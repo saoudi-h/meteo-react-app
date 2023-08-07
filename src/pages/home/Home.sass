@@ -4,6 +4,16 @@ $bg-size: 600%
 $primary-color: #6c63ff
 
 .home
+
+  &__hero
+    position: absolute
+    object-fit: cover
+    top: 0px
+    width: 100vw
+    height: 100vh
+    z-index: -1
+    opacity: .6
+
   .container
     width: 80%
     max-width: 1356px
@@ -13,7 +23,7 @@ $primary-color: #6c63ff
     font-family: mulish
     text-align: center
     margin: 80px auto 120px
-    backdrop-filter: blur(4px)
+    backdrop-filter: blur(6px)
 
     &__title
       font-weight: 900
@@ -43,7 +53,7 @@ $primary-color: #6c63ff
       transition: opacity .2s
       background: linear-gradient(122deg, var(--primary), #ec008c, var(--primary)) 0 0 / var(--bg-size) 100%
       animation: move-bg 25s linear infinite
-      box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px
+      box-shadow: rgba(17, 12, 46, 0.15) 0px 8px 10px 0px
 
   @keyframes move-bg
     100%
