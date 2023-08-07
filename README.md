@@ -10,7 +10,7 @@ Bienvenue dans l'application météo ! Ce projet a été développé pour mettre
 | ------------------------------------------------------ | ------------------ |
 | Affichage des prévisions météorologiques actuelles    | :white_check_mark: |
 | Utilisation de l'API OpenWeatherMap                   | :white_check_mark: |
-| Gestion de l'état global avec Redux                   | :white_check_mark: |
+| Gestion de l'état global avec Redux                   | :hourglass: |
 | Utilisation de React Router                           | :white_check_mark: |
 | Option de mode sombre                                 | :white_check_mark: |
 | Ajout d'animations avec react-spring                  | :white_check_mark: |
@@ -21,19 +21,27 @@ Bienvenue dans l'application météo ! Ce projet a été développé pour mettre
 ## Installation
 
 1. Clonez ce dépôt sur votre machine locale.
+    ```bash
+    git clone https://github.com/saoudi-h/meteo-react-app.git
+    ```
 2. Accédez au répertoire du projet :
 
     ```bash 
-    cd nom-du-projet
+    cd meteo-react-app
     ```
-3. Installez les dépendances : `npm install`.
+3. Installez les dépendances : 
+    ```bash
+    npm install
+    ```
 
 ## Configuration de la Clé API
 
-Pour utiliser l'application, vous devrez fournir une clé API valide d'OpenWeatherMap. Vous pouvez soit utiliser votre propre clé, soit en générer une sur le site d'OpenWeatherMap.
+Pour utiliser l'application, vous devrez fournir une clé API valide d'OpenWeatherMap. 
+
+Vous pouvez soit utiliser votre propre clé, soit en générer une sur le site d'OpenWeatherMap.
 
 1. Copiez le fichier `.env.example` et renommez-le en `.env`.
-2. Remplacez `YOUR_API_KEY_HERE` par votre propre clé API dans le fichier `.env`.
+2. Remplir `REACT_APP_WEATHER_TOKEN=` par votre propre clé API dans le fichier `.env`.
 
 ## Démarrage de l'Application
 
