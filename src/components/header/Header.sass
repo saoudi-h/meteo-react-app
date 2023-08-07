@@ -1,22 +1,44 @@
-nav
-  width: 100%
-  height: 50px
-  background-color: #fdf7f4
-  color: #953820
-  display: flex
-  justify-content: space-between
-  
-  ul
+@use '../../styles/colors' as *
+
+.header
+
+  &.dark
+    nav
+      ul
+        li
+          .link
+            &:hover
+              color: $accent-300
+            div
+  nav
+    width: 100%
     display: flex
-    align-items: center
-    justify-content: center
-    list-style: none
+    justify-content: space-between
 
-    li
-      padding: 0 20px
-  
-      .link 
-        text-decoration: none
-        font-weight: 500
+    ul
+      display: flex
+      flex-direction: row
+      align-items: center
+      justify-content: center
+      list-style: none
+      margin: 0
+      li
+        margin: 0
+        .link
+          color: currentColor
+          font-family: Mulish
+          font-size: 14px
+          font-weight: 300
+          text-decoration: none
+          display: flex
+          flex-direction: row
+          align-items: center
+          justify-content: center
+          height: 50px
+          padding: 0 16px
 
-
+          &:hover
+            color: $accent-dark-300
+          div
+            display: block
+            text-decoration: none

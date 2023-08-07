@@ -1,6 +1,11 @@
 @use "styles/colors" as *
 @import-normalize
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap")
+@import-sanitize
+
+// IBM  Plex mono	
+// @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap")
+// Mulish
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap')
 
 #root
 	display: flex
@@ -9,14 +14,17 @@
 	min-height: 100vh
 body
 	margin: 0
-	background-color: $secondary-300
-	font-family: "IBM Plex Mono", monospace
+	background-color: $primary-100
+	color: $primary-900
+	font-family: mulish, arial
 	-webkit-font-smoothing: antialiased
 	-moz-osx-font-smoothing: grayscale
 	transition: background-color 0.5s ease, color 0.3s ease
+	overflow: hidden
 
 	&.dark
-		background-color: $secondary-dark-300
+		background-color: $primary-dark-100
+		color: $primary-dark-900
 
 *
 	box-sizing: border-box
@@ -25,4 +33,4 @@ html,
 body
 	min-height: 100vh
 code
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace 
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace

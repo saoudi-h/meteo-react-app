@@ -2,7 +2,7 @@ function SearchSvg() {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <g>
-                <path fill="currentColor" d="M0 0H24V24H0z"></path>
+                <path fill="" d="M0 0H24V24H0z"></path>
                 <path
                     fill="currentColor"
                     fillRule="evenodd"
