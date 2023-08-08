@@ -14,7 +14,7 @@ const ToggleTheme: React.FC = () => {
   const initConfig = {
     from: {
       width: '30px',
-      borderRadius: theme === 'dark' ? '15px 3px 3px 15px' : '3px 15px 15px 3px'
+      borderRadius: theme !== 'dark' ? '15px 3px 3px 15px' : '3px 15px 15px 3px'
     }
   }
   const [springs, api] = useSpring(() => initConfig)
