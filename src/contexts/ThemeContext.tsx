@@ -5,6 +5,7 @@ type Theme = 'light' | 'dark'
 interface ThemeContextProps {
   theme: Theme
   toggleTheme: () => void
+  clearTheme: () => void
 }
 
 interface ThemeProviderProps {
@@ -14,29 +15,45 @@ interface ThemeProviderProps {
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined)
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>('light')
+  const systemTheme = (): Theme =>
+    window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  const storedTheme = (): Theme => localStorage.getItem('theme') as Theme
+
+  const [theme, setTheme] = useState<Theme>(() => {
+    return storedTheme() ? storedTheme() : systemTheme()
+  })
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'))
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    setTheme(newTheme)
+    localStorage.setItem('theme', newTheme)
+  }
+
+  const clearTheme = () => {
+    setTheme(systemTheme())
+    localStorage.removeItem('theme')
   }
 
   useEffect(() => {
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    setTheme(systemTheme)
+    setTheme((prevTheme) =>
+      prevTheme === 'light' || prevTheme === 'dark' ? prevTheme : systemTheme(),
+    )
   }, [])
 
   // add dark class to body (extern to context)
   useEffect(() => {
     if (theme === 'dark') {
       document.body.classList.add('dark')
-      console.log('add dark')
     } else {
       document.body.classList.remove('dark')
-      console.log('remove dark')
     }
   }, [theme])
 
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme, clearTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  )
 }
 
 export const useTheme = () => {
