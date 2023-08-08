@@ -4,78 +4,78 @@ $bg-size: 600%
 $primary-color: #6c63ff
 
 .home
+  .home-hero
+    &__img
+      position: absolute
+      object-fit: cover
+      top: 0px
+      width: 100vw
+      height: 100vh
+      z-index: -1
+      opacity: .6
 
-  &__hero
-    position: absolute
-    object-fit: cover
-    top: 0px
-    width: 100vw
-    height: 100vh
-    z-index: -1
-    opacity: .6
+    .container
+      width: 80%
+      max-width: 1356px
+      margin: 0 auto
 
-  .container
-    width: 80%
-    max-width: 1356px
-    margin: 0 auto
+    .exhero
+      font-family: mulish
+      text-align: center
+      margin: 80px auto 120px
+      backdrop-filter: blur(6px)
 
-  .exhero
-    font-family: mulish
-    text-align: center
-    margin: 80px auto 120px
-    backdrop-filter: blur(6px)
+      &__title
+        font-weight: 900
+        font-size: 48px
+        line-height: 54px
+        letter-spacing: -0.025em
+        max-width: 640px
+        margin: 0 auto 32px
 
-    &__title
-      font-weight: 900
-      font-size: 48px
-      line-height: 54px
-      letter-spacing: -0.025em
-      max-width: 640px
-      margin: 0 auto 32px
-
-      &__stress
+        &__stress
+          --bg-size: #{$bg-size}
+          --primary: #{$primary-color}
+          background: linear-gradient(30deg, var(--primary), #ec008c, var(--primary)) 0 0 / var(--bg-size) 100%
+          color: transparent
+          background-clip: text
+          -webkit-background-clip: text
+          animation: move-bg 25s linear infinite
+      .button--app
+        text-decoration: none
         --bg-size: #{$bg-size}
         --primary: #{$primary-color}
-        background: linear-gradient(30deg, var(--primary), #ec008c, var(--primary)) 0 0 / var(--bg-size) 100%
-        color: transparent
-        background-clip: text
-        -webkit-background-clip: text
+        border-radius: 24px
+        padding: 12px
+        font-size: 15px
+        letter-spacing: -.01rem
+        margin-bottom: 28px
+        transition: opacity .2s
+        background: linear-gradient(122deg, var(--primary), #ec008c, var(--primary)) 0 0 / var(--bg-size) 100%
         animation: move-bg 25s linear infinite
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 8px 10px 0px
+
+    @keyframes move-bg
+      100%
+        background-position: var(--bg-size) 0
+
+    .exhero__text
+      max-width: 600px
+      margin: 0 auto 40px
+
+    .explan
+      text-align: center
+      margin-top: 32px
+
     .button--app
-      text-decoration: none
-      --bg-size: #{$bg-size}
-      --primary: #{$primary-color}
-      border-radius: 24px
-      padding: 12px
-      font-size: 15px
-      letter-spacing: -.01rem
-      margin-bottom: 28px
-      transition: opacity .2s
-      background: linear-gradient(122deg, var(--primary), #ec008c, var(--primary)) 0 0 / var(--bg-size) 100%
-      animation: move-bg 25s linear infinite
-      box-shadow: rgba(17, 12, 46, 0.15) 0px 8px 10px 0px
+      background-color: #ec008c
+      color: white
+      border: none
+      padding: 10px 20px
+      border-radius: 5px
+      cursor: pointer
+      transition: background-color 0.3s
 
-  @keyframes move-bg
-    100%
-      background-position: var(--bg-size) 0
-
-  .exhero__text
-    max-width: 600px
-    margin: 0 auto 40px
-
-  .explan
-    text-align: center
-    margin-top: 32px
-
-  .button--app
-    background-color: #ec008c
-    color: white
-    border: none
-    padding: 10px 20px
-    border-radius: 5px
-    cursor: pointer
-    transition: background-color 0.3s
-
-    &--main
-      background-color: #6c63ff
-      width: 160px
+      &--main
+        background-color: #6c63ff
+        width: 160px

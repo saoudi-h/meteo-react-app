@@ -2,42 +2,26 @@ import { Link } from 'react-router-dom'
 import './Home.sass'
 import BubbleBack from '../../components/bubbleBack/BubbleBack'
 import { useState } from 'react'
-import DefaultLayout, { LayoutProps } from '../../layout/default/DefaultLayout'
+import DefaultLayout from '../../layout/default/DefaultLayout'
+import { MetaProps } from '../../components/utility/Meta'
 
 const Home = () => {
-  const layoutProps: LayoutProps = {
+  const metaProps = {
     title: 'Bienvenue sur Météo App',
-    metaTags: [
-      {
-        name: 'description',
-        content: 'Découvrez les prévisions météorologiques locales avec Météo App.',
-      },
-      {
-        name: 'keywords',
-        content: 'météo, prévisions, météo locale, conditions météorologiques',
-      },
-      {
-        name: 'og:title',
-        content: 'Météo App - Prévisions Météorologiques',
-      },
-      {
-        name: 'og:description',
-        content: 'Découvrez les prévisions météorologiques locales avec Météo App.',
-      },
-      {
-        name: 'og:image',
-        content: '/og_image.png',
-      },
-    ],
+    description: 'Découvrez les prévisions météorologiques locales avec Météo App.',
+    ogSrc: '/og/og_image.png',
+    keyWord: 'météo, prévisions, météo locale, conditions météorologiques',
   }
+
   const [mouseEvent, setMouseEvent] = useState<React.MouseEvent>()
   const handleMouseMove = (e: React.MouseEvent) => {
     setMouseEvent(e)
   }
+
   return (
-    <DefaultLayout className="" layoutProps={layoutProps}>
-      <main className="home" onMouseMove={handleMouseMove}>
-        <img src="/hero/hero_weather_2.png" alt="hero" className="home__hero" />
+    <DefaultLayout className="home" metaProps={metaProps}>
+      <section className="home-hero" onMouseMove={handleMouseMove}>
+        <img src="/hero/hero_weather_2.png" alt="hero" className="home-hero__img" />
 
         <div className="container exhero">
           <h1 className="exhero__title">
@@ -53,7 +37,7 @@ const Home = () => {
           </Link>
         </div>
         <BubbleBack mouseEvent={mouseEvent} />
-      </main>
+      </section>
     </DefaultLayout>
   )
 }
