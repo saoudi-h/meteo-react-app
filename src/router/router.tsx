@@ -8,12 +8,13 @@ import About from '../pages/about/About'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Home />}>
-      <Route path="/weather" element={<WeatherPage />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/weather/:city" element={<WeatherCityPage />} />
+    <>
+      <Route path="/" element={<Home />} />
+      <Route path="weather" element={<WeatherPage />} />
+      <Route path="about" element={<About />} />
+      <Route path="weather/:city" element={<WeatherCityPage />} />
       <Route path="*" element={<NotFound />} />
-    </Route>,
+    </>,
   ),
 )
 
