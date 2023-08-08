@@ -8,7 +8,7 @@ const About = () => {
     title: 'A propos',
     description: 'A propos de nous et My Weather APP',
     ogSrc: '/og/og_image.png',
-    keyWord: 'info, MyWeather, météo, prévisions, about',
+    keyWord: 'info, MyWeather, météo, prévisions, about'
   }
   return (
     <DefaultLayout className="About" metaProps={metaProps}>

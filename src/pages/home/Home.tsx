@@ -10,7 +10,7 @@ const Home = () => {
     title: 'Bienvenue sur Météo App',
     description: 'Découvrez les prévisions météorologiques locales avec Météo App.',
     ogSrc: '/og/og_image.png',
-    keyWord: 'météo, prévisions, météo locale, conditions météorologiques',
+    keyWord: 'météo, prévisions, météo locale, conditions météorologiques'
   }
 
   const [mouseEvent, setMouseEvent] = useState<React.MouseEvent>()

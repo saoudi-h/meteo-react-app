@@ -15,14 +15,14 @@ const AuthorCard: React.FC = () => {
     logoUrl: '/svg/logo.svg',
     webSite: {
       name: 'hakimsaoudi.dev',
-      url: 'https://hakimsaoudi.dev',
+      url: 'https://hakimsaoudi.dev'
     },
     socials: {
       github: ['https://github.com/saoudi-h', <GithubSvg />],
       linkedIn: ['https://www.linkedin.com/in/hakim-saoudi', <LinkedInSvg />],
       twitter: ['https://twitter.com/hakim__saoudi', <TwitterSvg />],
-      instagram: ['https://www.instagram.com/saisho_no_ippo', <InstagramSvg />],
-    },
+      instagram: ['https://www.instagram.com/saisho_no_ippo', <InstagramSvg />]
+    }
   }
   return (
     <div className={classNames('author', theme)}>

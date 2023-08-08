@@ -36,7 +36,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   useEffect(() => {
     setTheme((prevTheme) =>
-      prevTheme === 'light' || prevTheme === 'dark' ? prevTheme : systemTheme(),
+      prevTheme === 'light' || prevTheme === 'dark' ? prevTheme : systemTheme()
     )
   }, [])
 

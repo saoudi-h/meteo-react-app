@@ -14,8 +14,8 @@ const router = createBrowserRouter(
       <Route path="about" element={<About />} />
       <Route path="weather/:city" element={<WeatherCityPage />} />
       <Route path="*" element={<NotFound />} />
-    </>,
-  ),
+    </>
+  )
 )
 
 export default router

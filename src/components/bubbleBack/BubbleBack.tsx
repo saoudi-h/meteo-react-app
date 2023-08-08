@@ -7,27 +7,27 @@ const bubbleList = [
   {
     constConfig: {
       diameter: '200px',
-      color: '#90e0ef',
+      color: '#90e0ef'
     },
     xy: [700, 0],
-    config: { mass: 10, tension: 80, friction: 50 },
+    config: { mass: 10, tension: 80, friction: 50 }
   },
   {
     constConfig: {
       diameter: '150px',
-      color: '#a637cc',
+      color: '#a637cc'
     },
     xy: [200, 0],
-    config: { mass: 10, tension: 70, friction: 50 },
+    config: { mass: 10, tension: 70, friction: 50 }
   },
   {
     constConfig: {
       diameter: '80px',
-      color: '#f8ae26ff',
+      color: '#f8ae26ff'
     },
     xy: [200, 400],
-    config: { mass: 10, tension: 50, friction: 500 },
-  },
+    config: { mass: 10, tension: 50, friction: 500 }
+  }
 ]
 
 const trans = (x: number, y: number) => `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`
@@ -38,7 +38,7 @@ interface BubbleBackProps {
 const BubbleBack: React.FC<BubbleBackProps> = ({ mouseEvent }) => {
   const [trail, api] = useTrail(bubbleList.length, (i) => ({
     xy: bubbleList[i].xy,
-    config: bubbleList[i].config,
+    config: bubbleList[i].config
   }))
   const [ref, { left, top }] = useMeasure()
 
@@ -65,7 +65,7 @@ const BubbleBack: React.FC<BubbleBackProps> = ({ mouseEvent }) => {
               transform: props.xy.to(trans),
               width: bubbleList[index].constConfig.diameter,
               height: bubbleList[index].constConfig.diameter,
-              backgroundColor: bubbleList[index].constConfig.color,
+              backgroundColor: bubbleList[index].constConfig.color
             }}
           />
         ))}

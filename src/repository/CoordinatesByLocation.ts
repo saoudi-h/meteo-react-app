@@ -44,7 +44,7 @@ export default class CoordinatesByLocation {
     }
     const url = this.getUrl()
     const options = {
-      method: 'GET',
+      method: 'GET'
     }
 
     try {

@@ -14,8 +14,8 @@ const ToggleTheme: React.FC = () => {
   const initConfig = {
     from: {
       width: '30px',
-      borderRadius: theme === 'dark' ? '15px 3px 3px 15px' : '3px 15px 15px 3px',
-    },
+      borderRadius: theme === 'dark' ? '15px 3px 3px 15px' : '3px 15px 15px 3px'
+    }
   }
   const [springs, api] = useSpring(() => initConfig)
 
@@ -28,7 +28,7 @@ const ToggleTheme: React.FC = () => {
     const borderRadiusValue = theme === 'dark' ? '15px 3px 3px 15px' : '3px 15px 15px 3px'
 
     api.start({
-      borderRadius: borderRadiusValue,
+      borderRadius: borderRadiusValue
     })
     toggleTheme()
   }
@@ -37,7 +37,7 @@ const ToggleTheme: React.FC = () => {
     if (!isHovered) {
       setIsHovered(true)
       api.start({
-        width: '40px',
+        width: '40px'
       })
     }
   }
@@ -45,7 +45,7 @@ const ToggleTheme: React.FC = () => {
   const handleMouseLeave = () => {
     setIsHovered(false)
     api.start({
-      width: '30px',
+      width: '30px'
     })
   }
 

@@ -35,7 +35,7 @@ export default class WeatherByCity {
     }
     const url = this.getUrl()
     const options = {
-      method: 'GET',
+      method: 'GET'
     }
 
     try {

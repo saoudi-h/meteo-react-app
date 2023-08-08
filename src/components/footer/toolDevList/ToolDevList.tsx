@@ -9,20 +9,20 @@ const ToolDevList = () => {
   const tools: ToolDevProps[] = [
     {
       name: 'React',
-      children: <ReactSvg />,
+      children: <ReactSvg />
     },
     {
       name: 'React Router',
-      children: <ReactRouterSvg />,
+      children: <ReactRouterSvg />
     },
     {
       name: 'Sass',
-      children: <SassSvg />,
+      children: <SassSvg />
     },
     {
       name: 'Type Script',
-      children: <TypeScriptSvg />,
-    },
+      children: <TypeScriptSvg />
+    }
   ]
 
   return (
