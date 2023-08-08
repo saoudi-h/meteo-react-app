@@ -2,14 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.sass'
 import reportWebVitals from './reportWebVitals'
-import { BrowserRouter, RouterProvider } from 'react-router-dom'
+import { RouterProvider } from 'react-router-dom'
 import router from './router/router'
 import { ThemeProvider } from './contexts/ThemeContext'
+import DefaultHeader from './components/defaultHeader/DefaultHeader'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <ThemeProvider>
+      <DefaultHeader />
       <RouterProvider router={router} />
     </ThemeProvider>
   </React.StrictMode>,
