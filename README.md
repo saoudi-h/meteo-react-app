@@ -1,42 +1,51 @@
-# Application Météo
+# Application MyWeather
 
-Bienvenue dans l'application météo ! Ce projet a été développé pour mettre en pratique mes compétences en développement web, en particulier avec les technologies React, Redux, et d'autres bibliothèques connexes. L'objectif principal de ce projet est de créer une application qui affiche les prévisions météorologiques pour une ville donnée.
+Bienvenue dans l'application météo `MyWeather` ! Ce projet a été développé pour mettre en pratique mes compétences en développement web, en particulier avec les technologies React, Redux, et d'autres bibliothèques connexes. L'objectif principal de ce projet est de créer une application qui affiche les prévisions météorologiques pour une ville donnée.
+
+## Outils Utilisés
+
+[![My Skills](https://skillicons.dev/icons?i=react,sass,redux,nodejs)](https://skillicons.dev)
+
+mais aussi :
+
+- [React Router](https://reactrouter.com/) - Bibliothèque pour gérer la navigation entre différentes vues dans une application React.
+- [react-spring](https://react-spring.io/) - Bibliothèque pour ajouter des animations fluides et dynamiques à l'interface utilisateur.
+- [OpenWeatherMap API](https://openweathermap.org/api) - API fournissant des données météorologiques en temps réel.
 
 ## Fonctionnalités
 
-## Fonctionnalités
-
-| Fonctionnalité                                         | État               |
-| ------------------------------------------------------ | ------------------ |
-| Affichage des prévisions météorologiques actuelles    | :white_check_mark: |
-| Utilisation de l'API OpenWeatherMap                   | :white_check_mark: |
-| Gestion de l'état global avec Redux                   | :hourglass: |
-| Utilisation de React Router                           | :white_check_mark: |
-| Option de mode sombre                                 | :white_check_mark: |
-| Ajout d'animations avec react-spring                  | :white_check_mark: |
-| Géolocalisation pour obtenir rapidement la météo      | :hourglass:       |
-| Sauvegarde des résultats météo précédents             | :hourglass:       |
-| Sécurisation des clés API via un serveur backend      | :hourglass:       |
+| Fonctionnalité                                     | État               |
+| -------------------------------------------------- | ------------------ |
+| Affichage des prévisions météorologiques actuelles | :white_check_mark: |
+| Utilisation de l'API OpenWeatherMap                | :white_check_mark: |
+| Gestion de l'état global avec Redux                | :hourglass:        |
+| Utilisation de React Router                        | :white_check_mark: |
+| Option de mode sombre                              | :white_check_mark: |
+| Ajout d'animations avec react-spring               | :white_check_mark: |
+| Géolocalisation pour obtenir rapidement la météo   | :hourglass:        |
+| Sauvegarde des résultats météo précédents          | :hourglass:        |
+| Sécurisation des clés API via un serveur backend   | :hourglass:        |
 
 ## Installation
 
 1. Clonez ce dépôt sur votre machine locale.
-    ```bash
-    git clone https://github.com/saoudi-h/meteo-react-app.git
-    ```
+   ```bash
+   git clone https://github.com/saoudi-h/meteo-react-app.git
+   ```
 2. Accédez au répertoire du projet :
 
-    ```bash 
-    cd meteo-react-app
-    ```
-3. Installez les dépendances : 
-    ```bash
-    npm install
-    ```
+   ```bash
+   cd meteo-react-app
+   ```
+
+3. Installez les dépendances :
+   ```bash
+   npm install
+   ```
 
 ## Configuration de la Clé API
 
-Pour utiliser l'application, vous devrez fournir une clé API valide d'OpenWeatherMap. 
+Pour utiliser l'application, vous devrez fournir une clé API valide d'OpenWeatherMap.
 
 Vous pouvez soit utiliser votre propre clé, soit en générer une sur le site d'OpenWeatherMap.
 
@@ -46,7 +55,6 @@ Vous pouvez soit utiliser votre propre clé, soit en générer une sur le site d
 ## Démarrage de l'Application
 
 Une fois que vous avez configuré votre clé API, vous pouvez démarrer l'application en exécutant la commande suivante :
-
 
 ```bash
 npm start

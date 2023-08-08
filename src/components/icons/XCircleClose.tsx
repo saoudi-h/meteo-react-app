@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function XCircleClose() {
   return (
@@ -13,7 +13,7 @@ function XCircleClose() {
         ></path>
       </g>
     </svg>
-  );
+  )
 }
 
-export default XCircleClose;
+export default XCircleClose
