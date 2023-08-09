@@ -7,7 +7,6 @@ interface CityCardWeatherProps {
 
 const CityCardWeather: React.FC<CityCardWeatherProps> = ({ weatherData }: CityCardWeatherProps) => {
   const [expandDetail, setExpandDetail] = useState<boolean>(false)
-  console.log(weatherData)
   const toggleDetails = () => {
     setExpandDetail(!expandDetail)
   }
