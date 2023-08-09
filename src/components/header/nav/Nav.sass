@@ -1,0 +1,49 @@
+@use '../../../styles/colors' as *
+
+.nav-toggle
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: row
+    justify-content: space-between
+    list-style: none
+    height: 36px
+    position: relative
+    padding:
+        left: 3px
+        right: 3px
+    border-radius: 18px
+    backdrop-filter: invert(10%)
+    margin: 0
+
+    .toggle-item__switch
+        height: 30px
+        top: 3px
+        position: absolute
+        background: rgba(0,0 ,0 ,0.1 )
+        backdrop-filter: invert(5%)
+        z-index: -1
+        transition: left 400ms ease-out 0s, right 400ms ease-out 0s
+
+    li
+        margin: 0
+        width: 100px
+        .link
+            color: currentColor
+            font-family: Mulish
+            font-size: 14px
+            font-weight: 300
+            text-decoration: none
+            display: flex
+            flex-direction: row
+            align-items: center
+            justify-content: center
+            height: 50px
+            padding: 0 16px
+
+        &:hover
+            color: $accent-dark-300
+        div
+            display: block
+            white-space: nowrap
+            text-decoration: none
