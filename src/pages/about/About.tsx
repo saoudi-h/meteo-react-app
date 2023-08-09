@@ -1,7 +1,6 @@
 import React from 'react'
 import './About.sass'
-import DefaultLayout from '../../layout/default/DefaultLayout'
-import { MetaProps } from '../../components/utility/Meta'
+import Meta, { MetaProps } from '../../components/utility/Meta'
 
 const About = () => {
   const metaProps: MetaProps = {
@@ -11,9 +10,10 @@ const About = () => {
     keyWord: 'info, MyWeather, météo, prévisions, about'
   }
   return (
-    <DefaultLayout className="About" metaProps={metaProps}>
-      <div>About</div>
-    </DefaultLayout>
+    <>
+      <Meta {...metaProps} />
+      <main className="main about">About</main>
+    </>
   )
 }
 
