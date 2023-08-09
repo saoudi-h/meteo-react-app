@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Nav.sass'
 import { Link, useLocation } from 'react-router-dom'
-import { useSpring, animated, SpringValue } from '@react-spring/web'
+import { useSpring, animated } from '@react-spring/web'
 
 interface NavItem {
   path: string
@@ -23,19 +23,17 @@ const Nav: React.FC = () => {
     itemPositions[item.path] = index
   })
   const location = useLocation()
-  const [selectedItem, setSelectedItem] = useState<string>(location.pathname)
-  const [leftValue, setLeftValue] = useState<string>('')
-  const [rightValue, setRightValue] = useState<string>('')
-  const getLeftValue = () => itemPositions[selectedItem] * itemLength + marginSwitch + 'px'
-  const getRightValue = () =>
-    (nmbrItems - 1 - itemPositions[selectedItem]) * itemLength + marginSwitch + 'px'
+  const [selectedItem, setSelectedItem] = useState<string>('/')
+  const getLeftValue = (add: number = 0) =>
+    itemPositions[selectedItem] * itemLength + marginSwitch + add + 'px'
+  const getRightValue = (add: number = 0) =>
+    (nmbrItems - 1 - itemPositions[selectedItem]) * itemLength + marginSwitch + add + 'px'
   const getBorderRadius = () => {
     const borderRadiusLeft = itemPositions[selectedItem] === 0 ? '15px' : '3px'
     const borderRadiusRight = itemPositions[selectedItem] === navItems.length - 1 ? '15px' : '3px'
     return `${borderRadiusLeft} ${borderRadiusRight} ${borderRadiusRight} ${borderRadiusLeft}`
   }
 
-  //   updateLeftRightValues()
   useEffect(() => {
     setSelectedItem(location.pathname)
   }, [location])
@@ -49,10 +47,6 @@ const Nav: React.FC = () => {
   }))
 
   useEffect(() => {
-    // console.log("selectedItem: ", selectedItem)
-    // console.log("position: ", itemPositions[selectedItem])
-    // console.log("navItems.length : ", navItems.length)
-
     api.start({
       left: getLeftValue(),
       right: getRightValue(),
@@ -62,15 +56,6 @@ const Nav: React.FC = () => {
 
   const handleItemClick = (clickedPath: string) => {
     if (clickedPath !== selectedItem) {
-      const isLeft = itemPositions[selectedItem] < itemPositions[clickedPath]
-      // setLeftValue(isLeft ? '3px' : 'unset')
-      // setRightValue(isLeft ? 'unset' : '3px')
-      console.log(itemPositions[clickedPath]! * 100)
-      // api.start({
-      //     left: getLeftValue(),
-      //     right: getRightValue(),
-      //     borderRadius: getBorderRadius(),
-      // })
       setSelectedItem(clickedPath)
     }
   }
@@ -78,16 +63,18 @@ const Nav: React.FC = () => {
   const handleItemHover = (hoveredPath: string) => {
     if (hoveredPath !== selectedItem) {
       const isLeft = itemPositions[selectedItem] < itemPositions[hoveredPath]
-      setLeftValue(isLeft ? '3px' : 'unset')
-      setRightValue(isLeft ? 'unset' : '3px')
-      api.start({})
+      api.start({
+        left: getLeftValue(isLeft ? 0 : -20),
+        right: getRightValue(isLeft ? -20 : 0)
+      })
     }
   }
 
   const handleItemHoverEnd = () => {
-    if (selectedItem) {
-      api.start({})
-    }
+    api.start({
+      left: getLeftValue(),
+      right: getRightValue()
+    })
   }
 
   return (
