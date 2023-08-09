@@ -27,8 +27,6 @@ const DefaultHeader = () => {
         href={PUBLIC_URL + '/favicon/favicon-16x16.png'}
       />
       <link rel="manifest" href={PUBLIC_URL + '/favicon/site.webmanifest'} />
-
-      <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#83d9dc" />
       <meta name="description" content="My Weather : Votre application météo !" />

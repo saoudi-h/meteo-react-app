@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals'
 import { RouterProvider } from 'react-router-dom'
 import router from './router/router'
 import { ThemeProvider } from './contexts/ThemeContext'
-import DefaultHeader from './components/defaultHeader/DefaultHeader'
+import DefaultHeader from './components/utility/DefaultHead'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
