@@ -11,13 +11,12 @@ const ToggleTheme: React.FC = () => {
   const [leftValue, setLeftValue] = useState('')
   const [rightValue, setRightValue] = useState('')
 
-  const initConfig = {
+  const [springs, api] = useSpring(() => ({
     from: {
       width: '30px',
       borderRadius: theme !== 'dark' ? '15px 3px 3px 15px' : '3px 15px 15px 3px'
     }
-  }
-  const [springs, api] = useSpring(() => initConfig)
+  }))
 
   useEffect(() => {
     setLeftValue(theme !== 'dark' ? '3px' : 'unset')
