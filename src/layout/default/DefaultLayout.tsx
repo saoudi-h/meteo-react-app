@@ -1,7 +1,6 @@
 import React from 'react'
 import './DefaultLayout.sass'
 import { classNames } from '../../lib/classnames'
-import { Helmet } from 'react-helmet'
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import Meta, { MetaProps } from '../../components/utility/Meta'
