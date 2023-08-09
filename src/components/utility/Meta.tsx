@@ -11,13 +11,14 @@ export interface MetaProps {
 
 const Meta: React.FC<MetaProps> = ({ title, description, ogSrc, keyWord }) => {
   return (
-    <Helmet>
+    <>
       <Title>{title}</Title>
       <Description>{description}</Description>
-
-      {keyWord && <meta name="keyword" content={keyWord} />}
-      {ogSrc && <meta name="og" content={ogSrc} />}
-    </Helmet>
+      <Helmet>
+        {keyWord && <meta name="keyword" content={keyWord} />}
+        {ogSrc && <meta name="og" content={ogSrc} />}
+      </Helmet>
+    </>
   )
 }
 
