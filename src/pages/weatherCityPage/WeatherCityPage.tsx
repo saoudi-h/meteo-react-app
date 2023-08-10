@@ -3,7 +3,7 @@ import './WeatherCityPage.css'
 import Meta, { MetaProps } from '../../components/utility/Meta'
 
 const WeatherCityPage = () => {
-  const metaProps = {
+  const metaProps: MetaProps = {
     title: 'Météo city',
     description: 'Météo de votre ville',
     ogSrc: '/og/og_image.png',
