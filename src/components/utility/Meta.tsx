@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
 const appName = process.env.REACT_APP_NAME || 'My Weather'
 
