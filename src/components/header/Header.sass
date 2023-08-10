@@ -1,14 +1,28 @@
 @use '../../styles/colors' as *
 
 .header
-
+  color: $primary-700
   &.dark
-    color: $accent-300
+    color: $primary-dark-900
 
-  nav
-    width: 100%
+  &-centered
+    max-width: 1200px
+    margin: 0 auto
     display: flex
     justify-content: space-between
     align-items: center
 
-    
+    .logo
+      width: 40px
+      height: 40px
+      margin:
+        left: 16px
+        right: 16px
+      svg
+        width: 100%
+        height: 100%
+    nav
+      width: 100%
+      display: flex
+      justify-content: space-between
+      align-items: center
