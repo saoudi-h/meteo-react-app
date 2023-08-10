@@ -1,31 +1,35 @@
 @use '../../styles/colors' as *
 
 .footer
-	background-color: $primary-50
-	padding: 20px
-	display: flex
-	flex-wrap: wrap
-	justify-content: space-between
-	// margin-top: auto
-
 	&.dark
-		background: $primary-950
+		background-color: $primary-950
+		.footer-centered
+	
+	background-color: $primary-dark-950
+	
+	&-centered
+		max-width: 1200px
+		margin: 0 auto
+		padding: 20px
+		display: flex
+		flex-wrap: wrap
+		justify-content: space-between
+		// margin-top: auto
 
-	&>*:hover
-		box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px
-		border-radius: 10px
-		background: lighten($primary-950, 3%)
-
-	.footer-legal
-		flex-basis: 100%
-		padding: 12px
-		font-size: 14px
-
-
-	@media screen and (max-width: 768px)
-		flex-direction: column
+		&>*:hover
+			box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px
+			border-radius: 10px
+			background: lighten($primary-950, 3%)
 
 		.footer-legal
-			margin-top: 0
-			padding-top: 0
-			border-top: none
+			flex-basis: 100%
+			padding: 12px
+			font-size: 14px
+
+		@media screen and (max-width: 768px)
+			flex-direction: column
+
+			.footer-legal
+				margin-top: 0
+				padding-top: 0
+				border-top: none

@@ -8,14 +8,16 @@ const Footer: React.FC = () => {
   const { theme } = useTheme()
   return (
     <footer className={classNames('footer', theme)}>
-      <ToolDevList />
-      <AuthorCard />
-      <div className="footer-legal">
-        <h3>Mentions légales</h3>
-        <p>
-          © COPYRIGHT {new Date().getFullYear()}&nbsp;&nbsp;&nbsp;Ce site utilise des cookies pour
-          améliorer l'expérience utilisateur.
-        </p>
+      <div className="footer-centered">
+        <ToolDevList />
+        <AuthorCard />
+        <div className="footer-legal">
+          <h3>Mentions légales</h3>
+          <p>
+            © COPYRIGHT {new Date().getFullYear()}&nbsp;&nbsp;&nbsp;Ce site utilise des cookies
+            pour améliorer l'expérience utilisateur.
+          </p>
+        </div>
       </div>
     </footer>
   )
