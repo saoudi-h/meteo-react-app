@@ -2,11 +2,10 @@ import { Link } from 'react-router-dom'
 import './Home.sass'
 import BubbleBack from '../../components/bubbleBack/BubbleBack'
 import { useState } from 'react'
-import DefaultLayout from '../../layout/default/DefaultLayout'
 import Meta, { MetaProps } from '../../components/utility/Meta'
 
 const Home = () => {
-  const metaProps = {
+  const metaProps: MetaProps = {
     title: 'Bienvenue sur Météo App',
     description: 'Découvrez les prévisions météorologiques locales avec Météo App.',
     ogSrc: '/og/og_image.png',
