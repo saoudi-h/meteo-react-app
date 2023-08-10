@@ -2,6 +2,7 @@ import './BubbleBack.sass'
 import React, { useEffect } from 'react'
 import useMeasure from 'react-use-measure'
 import { useTrail, animated } from '@react-spring/web'
+import { useMouseMoveEvent } from '../../contexts/MouseMoveContext'
 
 const bubbleList = [
   {
@@ -32,10 +33,9 @@ const bubbleList = [
 
 const trans = (x: number, y: number) => `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`
 
-interface BubbleBackProps {
-  mouseEvent: React.MouseEvent | undefined
-}
-const BubbleBack: React.FC<BubbleBackProps> = ({ mouseEvent }) => {
+interface BubbleBackProps {}
+const BubbleBack: React.FC<BubbleBackProps> = () => {
+  const mouseMoveEvent = useMouseMoveEvent()
   const [trail, api] = useTrail(bubbleList.length, (i) => ({
     xy: bubbleList[i].xy,
     config: bubbleList[i].config
@@ -47,8 +47,8 @@ const BubbleBack: React.FC<BubbleBackProps> = ({ mouseEvent }) => {
   }
 
   useEffect(() => {
-    if (mouseEvent) handleMouseMove(mouseEvent)
-  }, [mouseEvent])
+    if (mouseMoveEvent) handleMouseMove(mouseMoveEvent)
+  }, [mouseMoveEvent])
 
   return (
     <div className="bubble">
