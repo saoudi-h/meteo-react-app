@@ -6,14 +6,20 @@ import { RouterProvider } from 'react-router-dom'
 import router from './router/router'
 import { ThemeProvider } from './contexts/ThemeContext'
 import DefaultHeader from './components/utility/DefaultHead'
+import { MouseMoveEventProvider } from './contexts/MouseMoveContext'
+import { HelmetProvider } from 'react-helmet-async'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
-      <DefaultHeader />
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider>
+        <MouseMoveEventProvider>
+          <DefaultHeader />
+          <RouterProvider router={router} />
+        </MouseMoveEventProvider>
+      </ThemeProvider>
+    </HelmetProvider>
   </React.StrictMode>
 )
 

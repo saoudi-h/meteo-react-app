@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import './Home.sass'
 import BubbleBack from '../../components/bubbleBack/BubbleBack'
-import { useState } from 'react'
 import Meta, { MetaProps } from '../../components/utility/Meta'
 
 const Home = () => {
@@ -12,16 +11,11 @@ const Home = () => {
     keyWord: 'météo, prévisions, météo locale, conditions météorologiques'
   }
 
-  const [mouseEvent, setMouseEvent] = useState<React.MouseEvent>()
-  const handleMouseMove = (e: React.MouseEvent) => {
-    setMouseEvent(e)
-  }
-
   return (
     <>
       <Meta {...metaProps} />
       <main className="main home">
-        <section className="home-hero" onMouseMove={handleMouseMove}>
+        <section className="home-hero">
           <img src="/hero/hero_weather_2.png" alt="hero" className="home-hero__img" />
 
           <div className="container exhero">
@@ -37,7 +31,7 @@ const Home = () => {
               Lancer l'application
             </Link>
           </div>
-          <BubbleBack mouseEvent={mouseEvent} />
+          <BubbleBack />
         </section>
       </main>
     </>
