@@ -16,8 +16,6 @@ const Home = () => {
       <Meta {...metaProps} />
       <main className="main home">
         <section className="home-hero">
-          <img src="/hero/hero_weather_2.png" alt="hero" className="home-hero__img" />
-
           <div className="container exhero">
             <h1 className="exhero__title">
               Découvrez la <span className="exhero__title__stress">météo</span>
@@ -31,7 +29,6 @@ const Home = () => {
               Lancer l'application
             </Link>
           </div>
-          <BubbleBack />
         </section>
       </main>
     </>
