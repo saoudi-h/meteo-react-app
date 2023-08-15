@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './BackgroundSvg.module.sass'
+import { NavLink, useLocation } from 'react-router-dom'
+import { useSpring, animated } from '@react-spring/web'
 
 interface BackgroundSvgProps {
-  primaryColor: string
-  secondaryColor: string
-  rotationAngle: number
+  primaryColor?: string
+  secondaryColor?: string
+  rotationAngle?: number
 }
 
 const BackgroundSvg: React.FC<BackgroundSvgProps> = ({
@@ -12,9 +14,25 @@ const BackgroundSvg: React.FC<BackgroundSvgProps> = ({
   secondaryColor,
   rotationAngle
 }) => {
+  const location = useLocation()
+  const [open, setOpen] = useState(false)
+  const [{ primary, secondary, angle }] = useSpring(
+    () => ({
+      reverse: open,
+      from: { primary: 'hsl(5, 100%, 52%)', secondary: 'hsl(115, 100%, 22%)', angle: 0 },
+      to: { primary: 'hsl(315, 100%, 12%)', secondary: 'hsl(215, 100%, 72%)', angle: 180 },
+      config: { duration: 3000 }
+    }),
+    [open]
+  )
+
+  useEffect(() => {
+    setOpen((e) => !e)
+  }, [location])
+
   return (
     <div className={style.hero}>
-      <svg
+      <animated.svg
         xmlns="http://www.w3.org/2000/svg"
         width="700"
         height="700"
@@ -23,17 +41,17 @@ const BackgroundSvg: React.FC<BackgroundSvgProps> = ({
         preserveAspectRatio="none"
       >
         <defs>
-          <linearGradient
+          <animated.linearGradient
             id="ffflux-gradient"
             x1="50%"
             x2="50%"
             y1="0%"
             y2="100%"
-            gradientTransform={`rotate(${rotationAngle} .5 .5)`}
+            gradientTransform={`rotate(${angle} .5 .5)`}
           >
-            <stop offset="0%" stopColor={primaryColor}></stop>
-            <stop offset="100%" stopColor={secondaryColor}></stop>
-          </linearGradient>
+            <animated.stop offset="0%" stopColor={primary}></animated.stop>
+            <animated.stop offset="100%" stopColor={secondary}></animated.stop>
+          </animated.linearGradient>
           <filter
             id="ffflux-filter"
             width="140%"
@@ -83,7 +101,7 @@ const BackgroundSvg: React.FC<BackgroundSvgProps> = ({
           fill={`url(#ffflux-gradient)`}
           filter={`url(#ffflux-filter)`}
         />
-      </svg>
+      </animated.svg>
     </div>
   )
 }
