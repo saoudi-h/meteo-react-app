@@ -2,7 +2,7 @@ import './BubbleBack.sass'
 import React, { useEffect } from 'react'
 import useMeasure from 'react-use-measure'
 import { useTrail, animated } from '@react-spring/web'
-import { useMouseMoveEvent } from '../../contexts/MouseMoveContext'
+import { useMouseMoveEvent } from '../../../contexts/MouseMoveContext'
 
 const bubbleList = [
   {

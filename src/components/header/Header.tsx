@@ -5,8 +5,8 @@ import { useTheme } from '../../contexts/ThemeContext'
 import { classNames } from '../../lib/classnames'
 import Nav from './nav/Nav'
 import LogoFullBlackSvg from '../icons/LogoFullBlackSvg'
-import BubbleBack from '../bubbleBack/BubbleBack'
-import BackgroundSvg from '../icons/backgroundSvg/BackgroundSvg'
+import BubbleBack from './bubbleBack/BubbleBack'
+import BackgroundSvg from './backgroundSvg/BackgroundSvg'
 
 const Header: React.FC = () => {
   const { theme } = useTheme()

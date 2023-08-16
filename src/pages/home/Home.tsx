@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import './Home.sass'
-import BubbleBack from '../../components/bubbleBack/BubbleBack'
 import Meta, { MetaProps } from '../../components/utility/Meta'
 
 const Home = () => {
