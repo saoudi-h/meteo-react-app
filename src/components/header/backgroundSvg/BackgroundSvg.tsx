@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from './BackgroundSvg.module.sass'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useSpring, animated } from '@react-spring/web'
+import { useTheme } from '../../../contexts/ThemeContext'
 
 interface BackgroundSvgProps {
   primaryColor?: string
@@ -14,21 +15,22 @@ const BackgroundSvg: React.FC<BackgroundSvgProps> = ({
   secondaryColor,
   rotationAngle
 }) => {
+  const { theme } = useTheme()
   const location = useLocation()
-  const [open, setOpen] = useState(false)
-  const [{ primary, secondary, angle }] = useSpring(
+  // const [open, setOpen] = useState(false)
+  const [{ primary, secondary }] = useSpring(
     () => ({
-      reverse: open,
-      from: { primary: 'hsl(5, 100%, 52%)', secondary: 'hsl(115, 100%, 22%)', angle: 0 },
-      to: { primary: 'hsl(315, 100%, 12%)', secondary: 'hsl(215, 100%, 72%)', angle: 180 },
-      config: { duration: 3000 }
+      reverse: theme === 'dark',
+      from: { primary: '#013f26', secondary: '#1f013f' },
+      to: { primary: '#e494f5', secondary: '#1485ba' },
+      config: { duration: 600 }
     }),
-    [open]
+    [theme]
   )
 
-  useEffect(() => {
-    setOpen((e) => !e)
-  }, [location])
+  // useEffect(() => {
+  //   setOpen((e) => !e)
+  // }, [location])
 
   return (
     <div className={style.hero}>
@@ -47,7 +49,7 @@ const BackgroundSvg: React.FC<BackgroundSvgProps> = ({
             x2="50%"
             y1="0%"
             y2="100%"
-            gradientTransform={`rotate(${angle} .5 .5)`}
+            gradientTransform={`180 .5 .5)`}
           >
             <animated.stop offset="0%" stopColor={primary}></animated.stop>
             <animated.stop offset="100%" stopColor={secondary}></animated.stop>
@@ -97,7 +99,7 @@ const BackgroundSvg: React.FC<BackgroundSvgProps> = ({
           x="0"
           y="0"
           width="100%"
-          height="700%"
+          height="100%"
           fill={`url(#ffflux-gradient)`}
           filter={`url(#ffflux-filter)`}
         />
