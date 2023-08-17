@@ -1,4 +1,5 @@
 @use '../../styles/colors' as *
+@import '../../styles/utility'
 
 $bg-size: 600%
 $primary-color: #6c63ff
@@ -40,12 +41,20 @@ $primary-color: #6c63ff
         padding: 12px
         font-size: 15px
         letter-spacing: -.01rem
-        margin-bottom: 28px
         transition: opacity .2s
         background: linear-gradient(122deg, var(--primary), #ec008c, var(--primary)) 0 0 / var(--bg-size) 100%
         animation: move-bg 25s linear infinite
-        box-shadow: rgba(17, 12, 46, 0.15) 0px 8px 10px 0px
-
+        // box-shadow: rgba(17, 12, 46, 0.15) 0px 8px 10px 0px
+        position: relative
+        box-shadow: shadow-gradient(#dd3ecb,10)
+        transition: all 0.5s
+        top: 0
+        &:hover
+          box-shadow: shadow-gradient(#dd3ecb,7)
+          top: 4px
+        &:active
+          box-shadow: none
+          top: 16px
     @keyframes move-bg
       100%
         background-position: var(--bg-size) 0
