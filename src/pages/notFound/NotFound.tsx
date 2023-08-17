@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from './NotFound.module.sass'
+import './NotFound.sass'
 import Meta, { MetaProps } from '../../components/utility/Meta'
 import { classNames } from '../../lib/classnames'
 import {
@@ -9,9 +9,9 @@ import {
   useTrail,
   a,
   Lookup,
-  SpringRef,
-  easings
+  SpringRef
 } from '@react-spring/web'
+import { useTheme } from '../../contexts/ThemeContext'
 
 const Trail: React.FC<{ children: React.ReactNode; springRef: SpringRef<Lookup<any>> }> = ({
   children,
@@ -32,7 +32,7 @@ const Trail: React.FC<{ children: React.ReactNode; springRef: SpringRef<Lookup<a
   return (
     <>
       {trail.map((style, index) => (
-        <a.div key={index} className={styles.bigText__div} style={style}>
+        <a.div key={index} className="bigText__div" style={style}>
           {items[index]}
         </a.div>
       ))}
@@ -41,31 +41,14 @@ const Trail: React.FC<{ children: React.ReactNode; springRef: SpringRef<Lookup<a
 }
 
 const NotFound = () => {
-  const [open, toggle] = useState(false)
-  // const [{ freq, factor, scale, opacity }] = useSpring(
-  //   () => ({
-  //     reverse: open,
-  //     from: { factor: 10, opacity: 0, scale: 0.9, freq: '0.0175, 0.0' },
-  //     to: { factor: 150, opacity: 1, scale: 1, freq: '0.0, 0.0' },
-  //     config: { duration: 3000 },
-  //   }),
-  //   [open]
-  // )
   const metaProps: MetaProps = {
     title: 'Page Introuvable',
     description: 'Erreur 404, Page Introuvable',
     ogSrc: '/og/og_image.png',
     keyWord: '404, app, météo, prévisions, météo locale'
   }
-  // const blurSpringRef = useSpringRef()
-  // const blurSpring = useSpring(
-  //   {
-  //     ref: blurSpringRef,
-  //     from: { opacity: 0, filter: "blur(30px)" },
-  //     to: { opacity: 1, filter: "blur(0px)" },
-  //     config: { duration: (400) }
-  //   }
-  // )
+  const { theme, toggleTheme } = useTheme()
+
   const trailSpringRef = useSpringRef()
   const titleSpringRef = useSpringRef()
   const titleSpring = useSpring({
@@ -83,25 +66,20 @@ const NotFound = () => {
   return (
     <>
       <Meta {...metaProps} />
-      <main className={classNames('main', styles.notfound)}>
-        <section className={styles.animation}>
-          {/* <div className={styles.animation__container}> */}
-          <a.div
-            className={styles.animation__text}
-            // style={blurSpring}
-          >
-            <div className={styles.bigText}>
+      <main className={classNames('main', 'notfound', theme)}>
+        <section className="animation">
+          <a.div className="animation__text">
+            <div className="bigText">
               <Trail springRef={trailSpringRef}>
                 <span>4</span>
                 <span>0</span>
                 <span>4</span>
               </Trail>
             </div>
-            <a.h1 className={styles.title} style={titleSpring}>
+            <a.h1 className="title" style={titleSpring}>
               Page introuvable
             </a.h1>
           </a.div>
-          {/* </div> */}
         </section>
       </main>
     </>
