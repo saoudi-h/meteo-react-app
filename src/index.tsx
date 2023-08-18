@@ -8,7 +8,7 @@ import { ThemeProvider } from './contexts/ThemeContext'
 import DefaultHeader from './components/utility/DefaultHead'
 import { MouseMoveEventProvider } from './contexts/MouseMoveContext'
 import { HelmetProvider } from 'react-helmet-async'
-import store from './lib/store'
+import store from './store/store'
 import { Provider } from 'react-redux'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
