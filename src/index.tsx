@@ -8,17 +8,21 @@ import { ThemeProvider } from './contexts/ThemeContext'
 import DefaultHeader from './components/utility/DefaultHead'
 import { MouseMoveEventProvider } from './contexts/MouseMoveContext'
 import { HelmetProvider } from 'react-helmet-async'
+import store from './store/store'
+import { Provider } from 'react-redux'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <HelmetProvider>
-      <ThemeProvider>
-        <MouseMoveEventProvider>
-          <DefaultHeader />
-          <RouterProvider router={router} />
-        </MouseMoveEventProvider>
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider>
+          <MouseMoveEventProvider>
+            <DefaultHeader />
+            <RouterProvider router={router} />
+          </MouseMoveEventProvider>
+        </ThemeProvider>
+      </Provider>
     </HelmetProvider>
   </React.StrictMode>
 )
