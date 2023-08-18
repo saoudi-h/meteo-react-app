@@ -3,8 +3,8 @@ import './WeaterPage.sass'
 import FormWeather from '../../components/formWeather/FormWeather'
 import WeatherByCity from '../../repository/WeatherByCity'
 import CityCardWeather from '../../components/cityCardWeather/CityCardWeather'
-import DefaultLayout from '../../layout/default/DefaultLayout'
 import Meta, { MetaProps } from '../../components/utility/Meta'
+import Weather from '../../components/weather/Weather'
 
 const WeatherPage = () => {
   const metaProps: MetaProps = {
@@ -34,10 +34,11 @@ const WeatherPage = () => {
     <>
       <Meta {...metaProps} />
       <main className="main weather">
-        <FormWeather onSubmit={handleSubmit} />
+        {/* <FormWeather onSubmit={handleSubmit} />
         <div>
           <CityCardWeather weatherData={result} />
-        </div>
+        </div> */}
+        <Weather />
       </main>
     </>
   )
