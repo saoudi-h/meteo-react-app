@@ -1,4 +1,4 @@
-export default class CoordinatesByLocation {
+export default class GeolocationAPIService {
   private _cityName: string
   private _appId: string
   private _limit: number = 1
@@ -11,9 +11,11 @@ export default class CoordinatesByLocation {
   get cityName(): string {
     return this._cityName
   }
+
   get appId(): string {
     return this._appId
   }
+
   get limit(): number {
     return this._limit
   }
@@ -21,9 +23,11 @@ export default class CoordinatesByLocation {
   set cityName(value: string) {
     this._cityName = value
   }
+
   set appId(value: string) {
     this._appId = value
   }
+
   set limit(value: number) {
     this._limit = value
   }
@@ -34,15 +38,16 @@ export default class CoordinatesByLocation {
     this._limit = limit
   }
 
-  private getUrl(): string {
+  private getCoordinatesUrl(): string {
     return `https://api.openweathermap.org/geo/1.0/direct?q=${this._cityName}&limit=${this._limit}&appid=${this._appId}`
   }
 
-  async getCoordinates(city = ''): Promise<any> {
+  async getCoordinatesForCity(city: string = ''): Promise<any> {
     if (city && city !== '') {
       this._cityName = city
     }
-    const url = this.getUrl()
+
+    const url = this.getCoordinatesUrl()
     const options = {
       method: 'GET'
     }
