@@ -1,0 +1,120 @@
+@use '../../../styles/colors' as *
+@import '../../../styles/utility'
+
+body
+    &.dark
+        .search_form
+            &__search
+                input
+                    color: $primary-dark-700
+                    background-color: $primary-dark-200
+                    box-shadow: shadow-gradient($primary-dark-200,10,true,false)
+                .button-location
+                    color: $primary-dark-200
+                    background-color: $primary-dark-700
+                    box-shadow: shadow-gradient($primary-dark-700,10,true,true)
+                    &:active
+                        box-shadow: none
+
+                .button-submit
+                    color: $primary-dark-700
+                    background-color: $primary-dark-200
+                    box-shadow: shadow-gradient($primary-dark-700,10,true,true)
+                    &:active
+                        box-shadow: none
+
+.search_form
+    width: 100%
+    display: flex
+    justify-content: center
+    align-content: center
+    margin: 0
+
+    &__search
+        display: flex
+        justify-content: center
+        align-content: center
+        justify-items: center
+        align-items: center
+        background: none
+        width: 400px
+        height: 60px
+        margin-top: 80px
+        position: relative
+
+        input
+            display: block
+            width: 100%
+            height: 100%
+            padding: 10px 80px 10px 80px
+            border: none
+            border-radius: 100px
+            color: $primary-700
+            background-color: $primary-200
+            box-shadow: shadow-gradient($primary-200,10,false,false)
+            text-shadow: shadow-gradient($primary-700,2,false)
+            outline-offset: 0px
+            font-weight: 600
+            font-size: 1.5rem
+
+        .button-location
+            border: none
+            padding: 0
+            background: transparent
+            position: absolute
+            right: 10px
+            top: 5px
+            background: $primary-700
+            color: $primary-200
+            border-radius: 50%
+            box-shadow: shadow-gradient($primary-700,10,false,true)
+            width: 40px
+            height: 40px
+            transition: all 0.4s ease-out
+
+            svg
+                transition: all 0.4s ease-out
+
+            &:hover
+                svg
+                    transition: all 1s ease-out
+                    transform: rotateZ(360deg)
+            &:active
+                box-shadow: none
+                top: 10px
+
+        .button-submit
+            border: none
+            margin: 0
+            padding: 0
+            width: auto
+            overflow: visible
+            background: transparent
+            color: inherit
+            font: inherit
+            line-height: normal
+            -webkit-font-smoothing: inherit
+            -moz-osx-font-smoothing: inherit
+            -webkit-appearance: none
+            display: block
+            position: absolute
+            left: 10px
+            top: 5px
+            background: $primary-200
+            color: $primary-700
+            border-radius: 50%
+            box-shadow: shadow-gradient($primary-700,10,false,true)
+            width: 40px
+            height: 40px
+            transition: all 0.4s ease-out
+
+            svg
+                transition: all 0.4s ease-out
+
+            &:hover
+                svg
+                    transition: all 1s ease-out
+                    transform: rotateZ(360deg)
+            &:active
+                box-shadow: none
+                top: 10px
