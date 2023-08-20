@@ -1,4 +1,5 @@
 export interface WeatherData {
+  datetime: Date
   imageUrl?: string
   coord: {
     lon: number
