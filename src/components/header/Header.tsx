@@ -27,8 +27,7 @@ const Header: React.FC = () => {
           </nav>
         </div>
       </header>
-      <BackgroundSvg primaryColor="#a637cc" secondaryColor="#ffflux" rotationAngle={45} />
-      {/* <img src="/hero/hero_weather_2.png" alt="hero" className="hero__img" /> */}
+      <BackgroundSvg />
       <BubbleBack />
     </>
   )
