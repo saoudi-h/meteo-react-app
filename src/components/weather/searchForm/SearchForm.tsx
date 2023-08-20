@@ -53,7 +53,8 @@ const SearchForm: React.FC = () => {
     // add image url with unsplash api to weatherData
     weatherData.imageUrl = (await unsplashAPIService.getImageForCity(weatherData.name)) || undefined
     // add current datetime to weatherData
-    weatherData.datetime = new Date(Date.now())
+    weatherData.datetime = new Date().toISOString()
+    console.log(JSON.stringify(weatherData))
     dispatch(addWeatherData(weatherData))
   }
 
