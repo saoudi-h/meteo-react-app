@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { addWeatherData } from '../../../store/actions/weatherActions'
 import { WeatherData } from '../../../store/types'
 import UnsplashAPIService from '../../../services/UnsplashAPIService'
+import { weatherConditions } from '../../../services/WeatherDataTranslate'
 
 type GeolocationStatus = 'prompt' | 'granted' | 'denied'
 const SearchForm: React.FC = () => {
@@ -50,6 +51,12 @@ const SearchForm: React.FC = () => {
   }
 
   const handleWeatherDataSuccess = async (weatherData: WeatherData) => {
+    // translate data to french
+    const matchingCondition = weatherConditions.find(
+      (condition) => condition.id === weatherData.weather[0].id
+    )
+    if (matchingCondition) weatherData.weather = [{ ...matchingCondition }]
+
     // add image url with unsplash api to weatherData
     weatherData.imageUrl = (await unsplashAPIService.getImageForCity(weatherData.name)) || undefined
     // add current datetime to weatherData
