@@ -3,6 +3,10 @@ import './WeatherCard.sass'
 import { WeatherData } from '../../../store/types'
 import { format } from 'date-fns'
 import fr from 'date-fns/locale/fr'
+import WeatherClock from './weatherClock/WeatherClock'
+import LocationTimeSvg from '../../icons/LocationTimeSvg'
+import CardUpdateSvg from '../../icons/CardUpdateSvg'
+import CardDeleteSvg from '../../icons/CardDeleteSvg'
 
 interface WeatherCardProps {
   weatherData: WeatherData
@@ -28,20 +32,50 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherData }: WeatherCardPro
             backgroundSize: 'cover'
           }}
         >
-          <div className="weather-card__info">
-            <div className="city-name">
-              {weatherData.name}, {weatherData.sys.country}
+          {/* header */}
+          <div className="weather-card__header">
+            {/* header left */}
+            <div className="header-left">
+              <div className="header-left__logo">
+                <LocationTimeSvg />
+              </div>
+              <div className="header-left__info">
+                <div className="city-name">
+                  {weatherData.name}, {weatherData.sys.country}
+                </div>
+                <div className="city-time">
+                  <WeatherClock offset={weatherData.timezone} />
+                </div>
+              </div>
             </div>
+            {/* header right */}
+            <div className="header-right">
+              <div className="header-right__update">
+                <CardUpdateSvg />
+              </div>
+              <div className="header-right__delete">
+                <CardDeleteSvg />
+              </div>
+            </div>
+
             {/* <div>{new Date(weatherData.datetime)}</div> */}
-            <div className="city-date">
+            {/* <div className="city-date">
               {format(new Date(weatherData.datetime), 'dd MMM yyyy', { locale: fr })}
-            </div>
-            <div className="city-time">
-              {format(new Date(weatherData.datetime), 'HH:mm:ss', { locale: fr })}
-            </div>
+            </div> */}
           </div>
-          <div className="weather-card__detail">
-            <div className="weather-summary">
+
+          {/* detail */}
+          <div className="weather-card__body">
+            <div className="card-grid">
+              <div className="card-grid__icon">
+                <img
+                  src={`./images/WeatherAnimatedSvg/${weatherData.weather[0].icon}.svg`}
+                  alt={weatherData.weather[0].description}
+                  className="card-grid__img"
+                />
+              </div>
+            </div>
+            {/* <div className="weather-summary">
               {weatherData.weather[0].main} - {weatherData.weather[0].description}
             </div>
             <div className="temp">
@@ -70,7 +104,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ weatherData }: WeatherCardPro
                 <div>Humidité : {weatherData.main.humidity}%</div>
                 <div>Vitesse du vent : {weatherData.wind.speed} m/s</div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       )}
