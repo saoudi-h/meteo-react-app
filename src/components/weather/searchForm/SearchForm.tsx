@@ -8,6 +8,7 @@ import { addWeatherData } from '../../../store/actions/weatherActions'
 import { WeatherData } from '../../../store/types'
 import UnsplashAPIService from '../../../services/UnsplashAPIService'
 import { weatherConditions } from '../../../services/WeatherDataTranslate'
+import { toast } from 'react-toastify'
 
 type GeolocationStatus = 'prompt' | 'granted' | 'denied'
 const SearchForm: React.FC = () => {
@@ -18,10 +19,16 @@ const SearchForm: React.FC = () => {
   const unsplashAPIService: UnsplashAPIService = new UnsplashAPIService(unsplashTokenApi)
   const [city, setCity] = useState('')
   const [geoLocationStatus, setGeoLocationStatus] = useState<GeolocationStatus>('denied')
-  const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
+
+  //
+  const handleFormSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (city !== '') {
-      handleWeatherDataSuccess(await weatherAPIService.getWeather(city))
+      try {
+        handleWeatherDataSuccess(await weatherAPIService.getWeather(city), true)
+      } catch (e: any) {
+        toast.error(e.message)
+      }
     }
   }
 
@@ -46,19 +53,25 @@ const SearchForm: React.FC = () => {
         await weatherAPIService.fetchWeatherByCoordinates(latitude, longitude)
       )
     } catch (e: any) {
-      alert("Erreur lors de l'obtention de la géolocalisation: " + e.message)
+      toast.error(e.message)
     }
   }
 
-  const handleWeatherDataSuccess = async (weatherData: WeatherData) => {
+  const handleWeatherDataSuccess = async (weatherData: WeatherData, isSearchForm = false) => {
     // translate data to french
     const matchingCondition = weatherConditions.find(
       (condition) => condition.id === weatherData.weather[0].id
     )
     if (matchingCondition) weatherData.weather = [{ ...matchingCondition }]
+    // add searchText to weatherData
+    weatherData.searchText = isSearchForm ? city : undefined
+    // re init form
+    if (isSearchForm) setCity('')
 
     // add image url with unsplash api to weatherData
-    weatherData.imageUrl = (await unsplashAPIService.getImageForCity(weatherData.name)) || undefined
+    weatherData.imageUrl =
+      (await unsplashAPIService.getImageForCity(weatherData.searchText || weatherData.name)) ||
+      undefined
     // add current datetime to weatherData
     weatherData.datetime = new Date().toISOString()
     console.log(JSON.stringify(weatherData))
@@ -67,7 +80,7 @@ const SearchForm: React.FC = () => {
 
   return (
     <div className="container">
-      <form onSubmit={handleSearch} className="search_form">
+      <form onSubmit={handleFormSearch} className="search_form">
         <div className="search_form__search">
           <button type="submit" className="button-submit">
             <SearchSvg />
