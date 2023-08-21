@@ -17,7 +17,7 @@ export default class WeatherAPIService {
 
   async fetchWeatherByCoordinates(lat: number, lon: number) {
     if (typeof lat !== 'number' || typeof lon !== 'number') {
-      throw new Error('Invalid latitude or longitude.')
+      throw new Error('Latitude ou longitude invalide.')
     }
 
     this._lat = lat
@@ -39,14 +39,17 @@ export default class WeatherAPIService {
 
   async getWeather(city: string) {
     if (!city) {
-      throw new Error('City name is missing.')
+      throw new Error('Le nom de la ville est manquant')
     }
 
     const data = await this.geolocationAPIService.getCoordinatesForCity(city)
+    if (data.length === 0) {
+      throw new Error('Nom de ville invalide.')
+    }
     const { lat, lon } = data[0]
 
     if (typeof lat !== 'number' || typeof lon !== 'number' || lat < 0 || lon < 0) {
-      throw new Error('Invalid coordinates.')
+      throw new Error('Coordonnées invalides.')
     }
 
     return await this.fetchWeatherByCoordinates(lat, lon)
