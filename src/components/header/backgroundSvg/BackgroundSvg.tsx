@@ -1,23 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import style from './BackgroundSvg.module.sass'
-import { NavLink, useLocation } from 'react-router-dom'
 import { useSpring, animated } from '@react-spring/web'
 import { useTheme } from '../../../contexts/ThemeContext'
 
-interface BackgroundSvgProps {
-  primaryColor?: string
-  secondaryColor?: string
-  rotationAngle?: number
-}
-
-const BackgroundSvg: React.FC<BackgroundSvgProps> = ({
-  primaryColor,
-  secondaryColor,
-  rotationAngle
-}) => {
+const BackgroundSvg: React.FC = () => {
   const { theme } = useTheme()
-  const location = useLocation()
-  // const [open, setOpen] = useState(false)
   const [{ primary, secondary }] = useSpring(
     () => ({
       reverse: theme === 'dark',
@@ -27,10 +14,6 @@ const BackgroundSvg: React.FC<BackgroundSvgProps> = ({
     }),
     [theme]
   )
-
-  // useEffect(() => {
-  //   setOpen((e) => !e)
-  // }, [location])
 
   return (
     <div className={style.hero}>
@@ -90,11 +73,6 @@ const BackgroundSvg: React.FC<BackgroundSvgProps> = ({
             ></feBlend>
           </filter>
         </defs>
-        {/* <path
-          fill={`url(#ffflux-gradient)`}
-          d="M0 0H700V700H0z"
-          filter={`url(#ffflux-filter)`}
-        ></path> */}
         <rect
           x="0"
           y="0"

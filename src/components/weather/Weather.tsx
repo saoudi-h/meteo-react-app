@@ -6,11 +6,7 @@ import WeatherList from './weatherList/WeatherList'
 const Weather: React.FC = () => {
   return (
     <section className="weather">
-      <SearchForm
-        onSearch={() => {
-          console.log('hahah')
-        }}
-      />
+      <SearchForm />
       <WeatherList />
       {/* <FormWeather onSubmit={handleSubmit} />
             <div>
