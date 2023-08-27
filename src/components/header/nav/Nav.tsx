@@ -27,7 +27,7 @@ const Nav: React.FC = () => {
 
   const [itemPositions, setItemPositions] = useState<{ [key: string]: number }>(genItemPosition())
 
-  const [notNavItems, setNotNavItems] = useState<NavItem[]>([{ path: '/credits', name: 'crédits' }])
+  const notNavItems = [{ path: '/credits', name: 'crédits' }]
 
   const itemLength = 100
   const marginSwitch = 3
@@ -35,6 +35,7 @@ const Nav: React.FC = () => {
 
   useEffect(() => {
     setItemPositions(genItemPosition())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navItems])
 
   const [selectedItem, setSelectedItem] = useState<string>('/')
@@ -68,6 +69,7 @@ const Nav: React.FC = () => {
       setSelectedItem(location.pathname)
       removeUnlistedItems()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location])
 
   const [springs, api] = useSpring(() => ({
@@ -84,6 +86,7 @@ const Nav: React.FC = () => {
       right: getRightValue(),
       borderRadius: getBorderRadius()
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, selectedItem, itemPositions])
 
   const handleItemClick = (clickedPath: string) => {
