@@ -4,7 +4,7 @@ Bienvenue dans l'application météo `MyWeather` ! Ce projet a été développé
 
 ## Outils Utilisés
 
-[![My Skills](https://skillicons.dev/icons?i=react,sass,redux,nodejs)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=react,sass,redux,typescript,nodejs)](https://skillicons.dev)
 
 mais aussi :
 
@@ -14,17 +14,52 @@ mais aussi :
 
 ## Fonctionnalités
 
-| Fonctionnalité                                     | État               |
-| -------------------------------------------------- | ------------------ |
-| Affichage des prévisions météorologiques actuelles | :white_check_mark: |
-| Utilisation de l'API OpenWeatherMap                | :white_check_mark: |
-| Gestion de l'état global avec Redux                | :hourglass:        |
-| Utilisation de React Router                        | :white_check_mark: |
-| Option de mode sombre                              | :white_check_mark: |
-| Ajout d'animations avec react-spring               | :white_check_mark: |
-| Géolocalisation pour obtenir rapidement la météo   | :hourglass:        |
-| Sauvegarde des résultats météo précédents          | :hourglass:        |
-| Sécurisation des clés API via un serveur backend   | :hourglass:        |
+<table>
+   <thead>
+      <tr>
+         <th>Fonctionnalité</th>
+         <th>État</th>
+      </tr>
+   </thead>
+   <tbody>
+<tr>
+      <td>Affichage des prévisions météorologiques actuelles</td>
+      <td>&#10004;</td>
+    </tr>
+    <tr>
+      <td>Utilisation de l'API OpenWeatherMap</td>
+      <td>&#10004;</td>
+    </tr>
+    <tr>
+      <td>Gestion de l'état global avec Redux</td>
+      <td>&#10004;</td>
+    </tr>
+    <tr>
+      <td>Utilisation de React Router</td>
+      <td>&#10004;</td>
+    </tr>
+    <tr>
+      <td>Option de mode sombre</td>
+      <td>&#10004;</td>
+    </tr>
+    <tr>
+      <td>Ajout d'animations avec react-spring</td>
+      <td>&#10004;</td>
+    </tr>
+    <tr>
+      <td>Géolocalisation pour obtenir rapidement la météo</td>
+      <td>&#8987;</td>
+    </tr>
+    <tr>
+      <td>Sauvegarde des résultats météo précédents</td>
+      <td>&#8987;</td>
+    </tr>
+    <tr>
+      <td>Sécurisation des clés API via un serveur backend</td>
+      <td>&#8987;</td>
+    </tr>
+   </tbody>
+</table>
 
 ## Installation
 
