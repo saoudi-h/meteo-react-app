@@ -4,7 +4,9 @@ type MouseMoveEventContextType = React.MouseEvent | null
 
 const MouseMoveEventContext = createContext<MouseMoveEventContextType>(null)
 
-export const MouseMoveEventProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const MouseMoveEventProvider: React.FC<{
+  children: React.ReactNode
+}> = ({ children }) => {
   const [mouseMoveEvent, setMouseMoveEvent] = useState<any>(null)
 
   const handleMouseMoveMove = (e: MouseEvent) => {
