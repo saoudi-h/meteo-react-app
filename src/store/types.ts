@@ -1,4 +1,5 @@
 export interface WeatherData {
+  searchMethod: SearchMethod
   searchText?: string
   datetime: string
   imageUrl?: string
@@ -42,6 +43,10 @@ export interface WeatherData {
   name: string
   cod: number
 }
+
+export type GeolocationStatus = 'prompt' | 'granted' | 'denied'
+
+export type SearchMethod = 'city' | 'geolocation'
 
 export interface WeatherState {
   weatherDataList: WeatherData[]
