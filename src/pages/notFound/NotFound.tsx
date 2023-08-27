@@ -13,10 +13,10 @@ import {
 } from '@react-spring/web'
 import { useTheme } from '../../contexts/ThemeContext'
 
-const Trail: React.FC<{ children: React.ReactNode; springRef: SpringRef<Lookup<any>> }> = ({
-  children,
-  springRef
-}) => {
+const Trail: React.FC<{
+  children: React.ReactNode
+  springRef: SpringRef<Lookup<any>>
+}> = ({ children, springRef }) => {
   const items = React.Children.toArray(children)
   const trail = useTrail(items.length, {
     ref: springRef,

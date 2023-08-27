@@ -6,11 +6,14 @@ export default class UnsplashAPIService {
   }
 
   private getImageUrl(query: string): Promise<string> {
-    const apiUrl = `https://api.unsplash.com/search/photos?query=${query}&client_id=${this._apiKey}`
+    const apiUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
+      query
+    )}&client_id=${this._apiKey}`
 
     return fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         const randomImageIndex = Math.floor(Math.random() * data.results.length)
         return data.results[randomImageIndex].urls.regular
       })
@@ -25,7 +28,7 @@ export default class UnsplashAPIService {
         "Une erreur s'est produite lors de la récupération d'images à partir d'Unsplash:",
         error
       )
-      return null
+      throw error
     }
   }
 }

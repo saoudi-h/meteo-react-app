@@ -7,7 +7,10 @@ const initialState: WeatherState = {
 const weatherReducer = (state = initialState, action: WeatherActionTypes): WeatherState => {
   switch (action.type) {
     case 'weatherData/add':
-      return { ...state, weatherDataList: [...state.weatherDataList, action.payload] }
+      return {
+        ...state,
+        weatherDataList: [...state.weatherDataList, action.payload]
+      }
     case 'weatherData/clear':
       return { ...state, weatherDataList: [] }
     default:

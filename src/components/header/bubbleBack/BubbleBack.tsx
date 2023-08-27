@@ -48,6 +48,7 @@ const BubbleBack: React.FC<BubbleBackProps> = () => {
 
   useEffect(() => {
     if (mouseMoveEvent) handleMouseMove(mouseMoveEvent)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mouseMoveEvent])
 
   return (
