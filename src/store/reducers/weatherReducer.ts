@@ -11,6 +11,13 @@ const weatherReducer = (state = initialState, action: WeatherActionTypes): Weath
         ...state,
         weatherDataList: [...state.weatherDataList, action.payload]
       }
+    case 'weatherData/remove':
+      return {
+        ...state,
+        weatherDataList: [
+          ...state.weatherDataList.filter((weatherData) => weatherData.name !== action.payload)
+        ]
+      }
     case 'weatherData/clear':
       return { ...state, weatherDataList: [] }
     default:
