@@ -48,7 +48,7 @@ export default class WeatherAPIService {
     }
     const { lat, lon } = data[0]
 
-    if (typeof lat !== 'number' || typeof lon !== 'number' || lat < 0 || lon < 0) {
+    if (typeof lat !== 'number' || typeof lon !== 'number') {
       throw new Error('Coordonnées invalides.')
     }
 
