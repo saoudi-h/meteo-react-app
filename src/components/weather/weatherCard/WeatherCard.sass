@@ -1,4 +1,5 @@
 @use '../../../styles/colors' as *
+@use '../../../styles/media' as *
 @import '../../../styles/_utility'
 
 body
@@ -17,6 +18,8 @@ $highlight-color: #f9e07e
 $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10px 10px -5px, $highlight-color 0px 1px 2px, $highlight-color 0px 2px 4px, $highlight-color 0px 4px 8px, $highlight-color 0px 8px 16px, $highlight-color 0px 16px 32px, $highlight-color 0px 32px 64px
 
 .weather-card
+    max-width: 600px
+    min-width: 400px
     overflow: hidden
     border-radius: 12px
     background-color: $primary-200
@@ -77,6 +80,8 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
 
                 .city-time
 
+        .header-left
+            
         .header-right
             padding: 5px 10px
             &__update, &__delete
@@ -88,6 +93,7 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
                 cursor: pointer
                 transition: all ease-in-out .3s
                 max-width: 40px
+                min-width: 20px
 
             &__delete
                 &:hover
@@ -124,3 +130,134 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
                 img
                     display: block
                     width: 100%
+
+
+// @media screen (max-width: $media-sm)
+//     body
+//         &.dark
+//             .weather-card
+//                 background-color: $primary-dark-200
+
+//                 &__header
+//                     .header-left, .header-right
+//                         background-color: rgba(0, 0, 0, 0.5)
+//                 &__body
+//                     background-color: rgba(0, 0, 0, 0.5)
+//                     .card-grid
+
+//     $highlight-color: #f9e07e
+//     $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10px 10px -5px, $highlight-color 0px 1px 2px, $highlight-color 0px 2px 4px, $highlight-color 0px 4px 8px, $highlight-color 0px 8px 16px, $highlight-color 0px 16px 32px, $highlight-color 0px 32px 64px
+
+//     .weather-card
+//         max-width: 600px
+//         min-width: 400px
+//         overflow: hidden
+//         border-radius: 12px
+//         background-color: $primary-200
+//         display: flex
+//         flex-direction: column
+//         gap: 80px
+//         position: relative
+//         box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px, rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px
+//         // transition: transform 0.3s ease-in-out
+
+//         &.geolocation
+//             grid-row: 1
+//             grid-column: 1
+
+//         &.highlight
+//             // animation: highlight 2s ease infinite
+//             // transform: scale(1.05)
+//             // filter: drop-shadow(0 0 2em)
+//             // // box-shadow: $highlight-shadow
+//             // @keyframes highlight
+//             //     0%, 100%
+//             //         background-color: transparent
+//             //         transform: scale(1)
+//             //     50%
+//             //         background-color: transparent
+//             //         transform: scale(1.1)
+//         &__header
+//             display: flex
+//             align-items: center
+//             justify-content: space-between
+//             flex-direction: row
+//             height: 90px
+//             width: 100%
+//             padding: 0 20px
+
+//             .header-left, .header-right
+//                 font-family: 'Inter', sans-serif
+//                 height: 60px
+//                 display: flex
+//                 flex-direction: row
+//                 gap: 10px
+//                 border: solid 1px
+//                 border-radius: 40px
+//                 padding: 5px 25px
+//                 background-color: rgba(255, 255, 255, 0.5)
+//                 backdrop-filter: blur(2px)
+//                 box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px
+//                 &__logo
+//                     max-width: 40px
+//                 &__info
+//                     display: flex
+//                     flex-direction: column
+//                     .city-name
+//                         font-size: 1.2rem
+//                         font-weight: 600
+//                         white-space: nowrap
+//                     .city-date
+
+//                     .city-time
+
+//             .header-left
+                
+//             .header-right
+//                 padding: 5px 10px
+//                 &__update, &__delete
+//                     color: inherit
+//                     background: transparent
+//                     padding: 0
+//                     margin: 0
+//                     border: none
+//                     cursor: pointer
+//                     transition: all ease-in-out .3s
+//                     max-width: 40px
+//                     min-width: 20px
+
+//                 &__delete
+//                     &:hover
+//                         color: #990505
+//                         transform: scale(1.1)
+//                     &:active
+//                         transform: scale(0.95)
+
+//                 &__update
+//                     &:hover
+//                         filter: invert(20%)
+//                         transform: scale(1.1) rotateZ(-360deg)
+
+//                     &:active
+//                         transform: scale(0.95)
+
+//         &__body
+//             // border-radius: 0 0 12px 12px
+//             background-color: rgba(255, 255, 255, 0.5)
+//             backdrop-filter: blur(4px)
+//             .card-grid
+//                 height: 200px
+//                 display: grid
+//                 grid-template-columns: repeat(4,1fr)
+//                 &__icon
+//                     grid-column-start: 1
+//                     grid-column-end: 2
+//                     min-width: 50px
+//                     min-height: 50px
+//                     max-width: 200px
+//                     min-height: 200px
+//                     width: 100%
+//                     height: 100%
+//                     img
+//                         display: block
+//                         width: 100%
