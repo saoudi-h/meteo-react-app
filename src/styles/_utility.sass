@@ -1,19 +1,4 @@
-@function shadow-gradient($color,$layer:10,$isDark:false, $isSmall:false)
-    $shadow: ""
-    $blur: 0
-    $alpha: .2
-    @if $isDark
-        $alpha: .1
-
-    $pixelsBottom: 2
-    @if $isSmall
-        $pixelsBottom: 1
-
-    @for $i from 1 through $layer
-        @if $i > ($layer/2)
-            $blur: $blur + 2
-        $shadow-color: darken($color, $i * 7%)
-        $shadow: $shadow + "0px #{$i*$pixelsBottom}px #{$blur*2}px #{rgba($shadow-color,$alpha)}"
-        @if $i < $layer
-            $shadow: $shadow + ", "
-    @return unquote($shadow)
+.container
+  max-width: $media-2xl
+  padding: 0 20px
+  margin: 0 auto
