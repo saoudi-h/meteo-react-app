@@ -8,7 +8,8 @@ import GeoLocationSvg from '../../icons/GeoLocationSvg'
 import TimeLocationSvg from '../../icons/TimeLocationSvg'
 import { classNames } from '../../../lib/classnames'
 import { useSpring, animated, easings } from '@react-spring/web'
-
+import { useDispatch } from 'react-redux'
+import { removeWeatherData } from '../../../store/actions/weatherActions'
 interface WeatherCardProps {
   weatherData: WeatherData
   highlighted: boolean
@@ -18,6 +19,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   weatherData,
   highlighted
 }: WeatherCardProps) => {
+  const dispatch = useDispatch()
   const timesLooped = useRef(0)
   const timeoutRef = useRef<NodeJS.Timeout>()
   const isAnimating = useRef(false)
@@ -72,11 +74,21 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   }
   useEffect(() => () => clearTimeout(timeoutRef.current), [])
 
+  function updateCard(event: React.MouseEvent): void {
+    throw new Error('Function not implemented.')
+  }
+
+  function removeCard(): void {
+    setTimeout(() => {
+      dispatch(removeWeatherData(weatherData.name))
+    }, 500)
+    api.start({ opacity: 0, scale: 0 })
+  }
+
   return (
     <>
       {weatherData && (
         <animated.div
-          onClick={handleHighlighted}
           className={classNames(
             'weather-card',
             weatherData.searchMethod
@@ -112,12 +124,12 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
             </div>
             {/* header right */}
             <div className="header-right">
-              <div className="header-right__update">
+              <button className="header-right__update" onClick={updateCard}>
                 <CardUpdateSvg />
-              </div>
-              <div className="header-right__delete">
+              </button>
+              <button className="header-right__delete" onClick={removeCard}>
                 <CardDeleteSvg />
-              </div>
+              </button>
             </div>
 
             {/* <div>{new Date(weatherData.datetime)}</div> */}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import WeatherCard from '../weatherCard/WeatherCard'
 import { RootState } from '../../../store/store'
