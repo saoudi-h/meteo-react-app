@@ -16,53 +16,59 @@ interface SearchFormProps {
 }
 const SearchForm: React.FC<SearchFormProps> = ({ setHighlightedCity }) => {
   const dispatch = useDispatch()
+
   const weatherTokenApi = process.env.REACT_APP_WEATHER_TOKEN || ''
+
   const unsplashTokenApi = process.env.REACT_APP_UNSPLASH_TOKEN || ''
+
   const weatherAPIService: WeatherAPIService = new WeatherAPIService(weatherTokenApi)
+
   const unsplashAPIService: UnsplashAPIService = new UnsplashAPIService(unsplashTokenApi)
+
   const [city, setCity] = useState('')
+
   const [geoLocationStatus, setGeoLocationStatus] = useState<GeolocationStatus>('denied')
+
   const weatherDataList = useSelector(
     (state: RootState) => state.weatherDataListState.weatherDataList
   )
 
   const coordRound = (n: number) => Math.round(n * 100) / 100
+
   const getWeatherDataByCoords = (lon: any, lat: any) => {
-    lon = coordRound(lon)
-    lat = coordRound(lat)
+    return weatherDataList.find((weatherData) => {
+      console.log(
+        `${coordRound(weatherData.coord.lon)} === ${coordRound(lon)} && ${coordRound(
+          weatherData.coord.lat
+        )} === ${coordRound(lat)}`
+      )
+      return (
+        coordRound(weatherData.coord.lon) === coordRound(lon) &&
+        coordRound(weatherData.coord.lat) === coordRound(lat)
+      )
+    })
+  }
+
+  const getWeatherDataBySearchText = (searchText: string) => {
     return weatherDataList.find(
-      (weatherData) =>
-        coordRound(weatherData.coord.lon) === lon && coordRound(weatherData.coord.lat) === lat
+      (weatherData) => weatherData.name === searchText || weatherData.searchText === searchText
     )
   }
-  const getWeatherDataByName = (name: string) => {
-    return weatherDataList.find((weatherData) => weatherData.name === name)
-  }
-  const geolocationExists = (lon: number, lat: number): boolean => {
-    lon = coordRound(lon)
-    lat = coordRound(lat)
-    console.log('weatherDataList', weatherDataList)
-    const res = weatherDataList.some((weatherData) => {
-      console.log(
-        `${coordRound(weatherData.coord.lon)} === ${lon} && ${coordRound(
-          weatherData.coord.lat
-        )} == ${lat}`
-      )
-      return coordRound(weatherData.coord.lon) === lon && coordRound(weatherData.coord.lat) === lat
-    })
-    console.log('some: ', res)
-    return res
-  }
-  const checkCityExists = (cityName: string): boolean => {
-    return weatherDataList.some((weatherData) => weatherData.name === cityName)
-  }
+
   const handleFormSearch = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
     if (city !== '') {
-      try {
-        handleWeatherDataSuccess(await weatherAPIService.getWeather(city), 'city')
-      } catch (e: any) {
-        toast.error(e.message)
+      //check if city already exists
+      const searchDataWeather = getWeatherDataBySearchText(city)
+      if (searchDataWeather === undefined) {
+        try {
+          handleWeatherDataSuccess(await weatherAPIService.getWeather(city), 'city')
+        } catch (e: any) {
+          toast.error(e.message)
+        }
+      } else {
+        setHighlightedCity(searchDataWeather.name)
       }
     }
   }
@@ -86,14 +92,15 @@ const SearchForm: React.FC<SearchFormProps> = ({ setHighlightedCity }) => {
         navigator.geolocation.getCurrentPosition(resolve, reject)
       })
       const { latitude, longitude } = position.coords
-      if (!geolocationExists(longitude, latitude)) {
+      const geolocationDataWeather = getWeatherDataByCoords(longitude, latitude)
+      if (geolocationDataWeather === undefined) {
+        console.log('undefined')
         handleWeatherDataSuccess(
           await weatherAPIService.fetchWeatherByCoordinates(latitude, longitude),
           'geolocation'
         )
       } else {
-        const name = getWeatherDataByCoords(longitude, latitude)?.name
-        setHighlightedCity(name || null)
+        setHighlightedCity(geolocationDataWeather.name)
       }
     } catch (e: any) {
       toast.error(e.message)
