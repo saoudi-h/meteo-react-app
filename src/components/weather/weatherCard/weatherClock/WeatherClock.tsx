@@ -3,28 +3,36 @@ import { format, utcToZonedTime } from 'date-fns-tz'
 import styles from './WeatherClock.module.sass'
 
 interface WeatherClockProps {
-  offset: number
+  timeZone: number
 }
 
-const WeatherClock: React.FC<WeatherClockProps> = ({ offset }) => {
+const WeatherClock: React.FC<WeatherClockProps> = ({ timeZone }) => {
   const [localTime, setLocalTime] = useState<Date>(new Date())
+
+  const getCityTime = (timeZone: number): Date => {
+    const localUnixTime = Math.floor(Date.now() / 1000)
+    const localTimeZone = new Date().getTimezoneOffset() * 60
+    const cityUnixTime = localUnixTime + timeZone + localTimeZone
+    return new Date(cityUnixTime * 1000)
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const utcTime = new Date()
-      const zonedTime = utcToZonedTime(
-        utcTime,
-        `Etc/GMT${offset > 0 ? '-' : '+'}${Math.abs(offset) / 3600}`
-      )
+      const zonedTime = getCityTime(timeZone)
       setLocalTime(zonedTime)
     }, 1000)
 
     return () => {
       clearInterval(interval)
     }
-  }, [offset])
+  }, [timeZone])
 
-  const formattedLocalTime = format(localTime, 'HH:mm:ss')
+  const options: Intl.DateTimeFormatOptions = {
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric'
+  }
+  const formattedLocalTime = localTime.toLocaleString(undefined, options)
 
   return <div className={styles.localTimezone}>{formattedLocalTime}</div>
 }

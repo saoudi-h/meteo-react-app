@@ -61,4 +61,12 @@ export interface ClearWeatherDataAction {
   type: 'weatherData/clear'
 }
 
-export type WeatherActionTypes = AddWeatherDataAction | ClearWeatherDataAction
+export interface RemoveWeatherDataAction {
+  type: 'weatherData/remove'
+  payload: string
+}
+
+export type WeatherActionTypes =
+  | AddWeatherDataAction
+  | ClearWeatherDataAction
+  | RemoveWeatherDataAction

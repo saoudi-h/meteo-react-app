@@ -1,23 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react'
 import WeatherCard from '../weatherCard/WeatherCard'
-import { RootState } from '../../../store/store'
 import './WeatherList.sass'
+import { WeatherData } from '../../../store/types'
 
 interface WeatherListProps {
+  weatherDataList: WeatherData[]
   highlightedCity: string | null
 }
-const WeatherList: React.FC<WeatherListProps> = ({ highlightedCity }) => {
-  const weatherDataList = useSelector(
-    (state: RootState) => state.weatherDataListState.weatherDataList
-  )
-
+const WeatherList: React.FC<WeatherListProps> = ({ weatherDataList, highlightedCity }) => {
   return (
     <div className="container">
       <div className="weather-list">
         {weatherDataList.map((weatherData, index) => (
           <WeatherCard
-            key={index}
+            key={weatherData.name}
             weatherData={weatherData}
             highlighted={weatherData.name === highlightedCity}
           />

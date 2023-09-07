@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
   const { theme } = useTheme()
   return (
     <footer className={classNames('footer', theme)}>
-      <div className="footer-centered">
+      <div className="footer-centered container">
         <ToolDevList />
         <AuthorCard />
         <div className="footer-legal">

@@ -1,5 +1,5 @@
 import React from 'react'
-import './WeaterPage.sass'
+import './WeatherPage.sass'
 import Meta, { MetaProps } from '../../components/utility/Meta'
 import Weather from '../../components/weather/Weather'
 

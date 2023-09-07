@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   return (
     <>
       <header className={classNames('header', theme)}>
-        <div className="header-centered">
+        <div className="container header-centered">
           <div className="logo">
             <LogoFullBlackSvg />
           </div>
