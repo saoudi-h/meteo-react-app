@@ -36,17 +36,11 @@ const SearchForm: React.FC<SearchFormProps> = ({ setHighlightedCity }) => {
   const coordRound = (n: number) => Math.round(n * 100) / 100
 
   const getWeatherDataByCoords = (lon: any, lat: any) => {
-    return weatherDataList.find((weatherData) => {
-      console.log(
-        `${coordRound(weatherData.coord.lon)} === ${coordRound(lon)} && ${coordRound(
-          weatherData.coord.lat
-        )} === ${coordRound(lat)}`
-      )
-      return (
+    return weatherDataList.find(
+      (weatherData) =>
         coordRound(weatherData.coord.lon) === coordRound(lon) &&
         coordRound(weatherData.coord.lat) === coordRound(lat)
-      )
-    })
+    )
   }
 
   const getWeatherDataBySearchText = (searchText: string) => {
@@ -94,7 +88,6 @@ const SearchForm: React.FC<SearchFormProps> = ({ setHighlightedCity }) => {
       const { latitude, longitude } = position.coords
       const geolocationDataWeather = getWeatherDataByCoords(longitude, latitude)
       if (geolocationDataWeather === undefined) {
-        console.log('undefined')
         handleWeatherDataSuccess(
           await weatherAPIService.fetchWeatherByCoordinates(latitude, longitude),
           'geolocation'
@@ -127,7 +120,6 @@ const SearchForm: React.FC<SearchFormProps> = ({ setHighlightedCity }) => {
       undefined
     // add current datetime to weatherData
     weatherData.datetime = new Date().toISOString()
-    console.log(JSON.stringify(weatherData))
     dispatch(addWeatherData(weatherData))
   }
 
