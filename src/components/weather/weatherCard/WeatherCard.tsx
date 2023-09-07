@@ -7,7 +7,7 @@ import CardDeleteSvg from '../../icons/CardDeleteSvg'
 import GeoLocationSvg from '../../icons/GeoLocationSvg'
 import TimeLocationSvg from '../../icons/TimeLocationSvg'
 import { classNames } from '../../../lib/classnames'
-import { useSpring, animated, easings } from '@react-spring/web'
+import { useSpring, animated, easings, useSpringValue } from '@react-spring/web'
 import { useDispatch } from 'react-redux'
 import { removeWeatherData } from '../../../store/actions/weatherActions'
 interface WeatherCardProps {
@@ -22,10 +22,18 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   const dispatch = useDispatch()
   const timesLooped = useRef(0)
   const timeoutRef = useRef<NodeJS.Timeout>()
-  const isAnimating = useRef(false)
+  const [isAnimating, setIsAnimating] = useState(false)
+
   const [props, api] = useSpring(
     () => ({
-      from: { opacity: 1, scale: 1, config: { easing: easings.easeInElastic } }
+      from: {
+        opacity: 1,
+        scale: 1,
+        config: {
+          friction: 40,
+          tension: 250
+        }
+      }
     }),
     []
   )
@@ -45,36 +53,31 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   }, [highlighted])
 
   const handleHighlighted = () => {
-    console.log('enter in handleHighlighted')
-    if (!isAnimating.current) {
-      isAnimating.current = true
+    if (!isAnimating) {
+      setIsAnimating(true)
       timesLooped.current = 0
 
       api.start({
         scale: 1.1,
-        opacity: 0.7,
         loop: () => {
           if (2 === timesLooped.current++) {
             timeoutRef.current = setTimeout(() => {
-              api.set({ opacity: 1, scale: 1 })
-              isAnimating.current = false
+              api.set({ scale: 1 })
               timeoutRef.current = undefined
+              setIsAnimating(false)
             }, 2000)
             api.stop()
           }
-
           return { reverse: true }
         }
       })
-    } else {
-      clearTimeout(timeoutRef.current)
-      api.start({ opacity: 1, scale: 1 })
-      isAnimating.current = false
     }
   }
+
   useEffect(() => () => clearTimeout(timeoutRef.current), [])
 
   function updateCard(event: React.MouseEvent): void {
+    // TODO UpdateCard
     throw new Error('Function not implemented.')
   }
 
@@ -89,14 +92,10 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
     <>
       {weatherData && (
         <animated.div
-          className={classNames(
-            'weather-card',
-            weatherData.searchMethod
-            // highlighted ? 'highlight' : ''
-          )}
+          className={classNames('weather-card', weatherData.searchMethod)}
           style={{
-            background: `no-repeat url(${weatherData.imageUrl}) center center`,
-            backgroundSize: 'cover',
+            backgroundImage: `url(${weatherData.imageUrl})`,
+            zIndex: isAnimating ? 10 : 0,
             ...props
           }}
           id={`city-${weatherData.name}`}
@@ -131,11 +130,6 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
                 <CardDeleteSvg />
               </button>
             </div>
-
-            {/* <div>{new Date(weatherData.datetime)}</div> */}
-            {/* <div className="city-date">
-              {format(new Date(weatherData.datetime), 'dd MMM yyyy', { locale: fr })}
-            </div> */}
           </div>
 
           {/* detail */}
