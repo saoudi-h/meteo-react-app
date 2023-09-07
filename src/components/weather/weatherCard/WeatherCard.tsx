@@ -118,7 +118,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
                   {weatherData.name}, {weatherData.sys.country}
                 </div>
                 <div className="city-time">
-                  <WeatherClock offset={weatherData.timezone} />
+                  <WeatherClock timeZone={weatherData.timezone} />
                 </div>
               </div>
             </div>
