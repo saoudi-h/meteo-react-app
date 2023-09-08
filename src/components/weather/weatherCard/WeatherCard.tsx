@@ -10,6 +10,16 @@ import { classNames } from '../../../lib/classnames'
 import { useSpring, animated, easings, useSpringValue } from '@react-spring/web'
 import { useDispatch } from 'react-redux'
 import { removeWeatherData } from '../../../store/actions/weatherActions'
+import Temperature from './temperature'
+import PressureSvg from '../../icons/PressureSvg'
+import HumiditySvg from '../../icons/HumiditySvg'
+import FeelLikeSvg from '../../icons/FeelsLikeSvg'
+import Infos from './infos'
+import WindSvg from '../../icons/WindSvg'
+import WindSpeedSvg from '../../icons/WingSpeedSvg'
+import WindDegSvg from '../../icons/WindDegSvg'
+import WindGustSvg from '../../icons/WindGustSvg'
+import Wind from './wind'
 interface WeatherCardProps {
   weatherData: WeatherData
   highlighted: boolean
@@ -19,6 +29,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   weatherData,
   highlighted
 }: WeatherCardProps) => {
+  console.log(weatherData)
   const dispatch = useDispatch()
   const timesLooped = useRef(0)
   const timeoutRef = useRef<NodeJS.Timeout>()
@@ -41,10 +52,6 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   const [expandDetail, setExpandDetail] = useState<boolean>(false)
   const toggleDetails = () => {
     setExpandDetail(!expandDetail)
-  }
-
-  const celciusFromKelvin = (kelvin: number) => {
-    return Math.round((kelvin - 273.15) * 100) / 100 + ' °C'
   }
 
   useEffect(() => {
@@ -141,6 +148,29 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
                   alt={weatherData.weather[0].description}
                   className="card-grid__img"
                 />
+              </div>
+
+              <div className="card-grid__wind">
+                <Wind data={weatherData.wind} />
+              </div>
+
+              <div className="card-grid__description">{weatherData.weather[0].description}</div>
+              <div className="card-grid__temperature">
+                <Temperature
+                  temperature={weatherData.main.temp}
+                  min={weatherData.main.temp_min}
+                  max={weatherData.main.temp_max}
+                  feelsLike={weatherData.main.feels_like}
+                />
+              </div>
+              <div className="card-grid__infos">
+                <Infos
+                  humidity={weatherData.main.humidity}
+                  pressure={weatherData.main.pressure}
+                  visibility={weatherData.visibility}
+                  clouds={weatherData.clouds.all}
+                />
+                <div></div>
               </div>
             </div>
             {/* <div className="weather-summary">
