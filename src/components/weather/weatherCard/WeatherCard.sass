@@ -2,6 +2,22 @@
 @use '../../../styles/media' as *
 @import '../../../styles/functions'
 
+.react-tooltip.my-tooltip
+    // background-color: rgba(255, 255, 255, 0.3)
+    padding: 6px 9px
+    border-radius: 40px
+    border: 1px solid $primary-200
+    background: rgba($primary-100,.5)
+    color: $primary-800
+    backdrop-filter: blur(4px)
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px
+
+.dark
+    .react-tooltip.my-tooltip
+        color: $primary-dark-800
+        background-color: rgba($primary-dark-100,0.5)
+        border: 1px solid $primary-dark-200
+
 body
     &.dark
         .weather-card
@@ -9,7 +25,9 @@ body
 
             &__header
                 .header-left, .header-right
-                    background-color: rgba(0, 0, 0, 0.5)
+                    border: 1px solid $primary-dark-200
+                    background: rgba($primary-dark-100,.5)
+                    color: $primary-dark-800
             &__body
                 background-color: rgba(0, 0, 0, 0.5)
                 .card-grid
@@ -60,18 +78,19 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
 
         .header-left, .header-right
             font-family: 'Inter', sans-serif
-            height: 60px
+            height: 50px
             display: flex
             flex-direction: row
-            gap: 10px
-            border: solid 1px
+            gap: 8px
             border-radius: 40px
-            padding: 5px 25px
-            background-color: rgba(255, 255, 255, 0.5)
+            padding: 0px 16px
+            border: 1px solid $primary-200
+            background: rgba($primary-100,.5)
+            color: $primary-800
             backdrop-filter: blur(2px)
             box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px
             &__logo
-                max-width: 40px
+                max-width: 35px
             &__info
                 display: flex
                 flex-direction: column
@@ -106,15 +125,19 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
                     transform: scale(0.95)
 
             &__update
+                svg
+                    transition: all ease-in-out .3s
+
                 &:hover
-                    filter: invert(20%)
-                    transform: scale(1.1) rotateZ(-360deg)
+                    svg
+                        filter: invert(20%)
+                        transform: scale(1.1) rotateZ(-360deg)
 
                 &:active
                     transform: scale(0.95)
 
     &__body
-        // border-radius: 0 0 12px 12px
+        border-radius: 25px 25px 0px 0px
         background-color: rgba(255, 255, 255, 0.5)
         backdrop-filter: blur(4px)
         .card-grid
@@ -146,8 +169,6 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
                 align-items: center
                 justify-content: center
 
-                
-
             &__description
                 grid-column-start: 1
                 grid-column-end: 2
@@ -164,7 +185,7 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
                 grid-column-start: 3
                 grid-column-end: 4
                 grid-row-start: 1
-                grid-row-end: 2
+                grid-row-end: 3
                 display: flex
                 flex-direction: column
                 justify-content: center

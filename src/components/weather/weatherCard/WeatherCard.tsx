@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react'
-import './WeatherCard.sass'
 import { WeatherData } from '../../../store/types'
 import WeatherClock from './weatherClock/WeatherClock'
 import CardUpdateSvg from '../../icons/CardUpdateSvg'
@@ -7,19 +6,18 @@ import CardDeleteSvg from '../../icons/CardDeleteSvg'
 import GeoLocationSvg from '../../icons/GeoLocationSvg'
 import TimeLocationSvg from '../../icons/TimeLocationSvg'
 import { classNames } from '../../../lib/classnames'
-import { useSpring, animated, easings, useSpringValue } from '@react-spring/web'
+import { useSpring, animated } from '@react-spring/web'
 import { useDispatch } from 'react-redux'
 import { removeWeatherData } from '../../../store/actions/weatherActions'
 import Temperature from './temperature'
-import PressureSvg from '../../icons/PressureSvg'
-import HumiditySvg from '../../icons/HumiditySvg'
-import FeelLikeSvg from '../../icons/FeelsLikeSvg'
 import Infos from './infos'
-import WindSvg from '../../icons/WindSvg'
-import WindSpeedSvg from '../../icons/WingSpeedSvg'
-import WindDegSvg from '../../icons/WindDegSvg'
-import WindGustSvg from '../../icons/WindGustSvg'
+
 import Wind from './wind'
+import { Tooltip } from 'react-tooltip'
+import './WeatherCard.sass'
+import { formatDistanceToNow } from 'date-fns'
+import fr from 'date-fns/locale/fr'
+
 interface WeatherCardProps {
   weatherData: WeatherData
   highlighted: boolean
@@ -29,12 +27,15 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   weatherData,
   highlighted
 }: WeatherCardProps) => {
-  console.log(weatherData)
   const dispatch = useDispatch()
   const timesLooped = useRef(0)
   const timeoutRef = useRef<NodeJS.Timeout>()
   const [isAnimating, setIsAnimating] = useState(false)
 
+  const [lastUpdate, setLastUpdate] = useState<string>('')
+  const handleMouseEnterUpdate = () => {
+    setLastUpdate(formatDistanceToNow(new Date(weatherData.dt * 1000), { locale: fr }))
+  }
   const [props, api] = useSpring(
     () => ({
       from: {
@@ -130,14 +131,31 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
             </div>
             {/* header right */}
             <div className="header-right">
-              <button className="header-right__update" onClick={updateCard}>
+              <button
+                className="header-right__update"
+                onClick={updateCard}
+                onMouseEnter={handleMouseEnterUpdate}
+                data-tooltip-id={'update-tooltip-' + weatherData.name}
+                data-tooltip-place="top"
+              >
                 <CardUpdateSvg />
               </button>
-              <button className="header-right__delete" onClick={removeCard}>
+              <button
+                className="header-right__delete"
+                onClick={removeCard}
+                data-tooltip-id={'delete-tooltip-' + weatherData.name}
+              >
                 <CardDeleteSvg />
               </button>
             </div>
           </div>
+
+          <Tooltip id={'update-tooltip-' + weatherData.name} className="my-tooltip" noArrow>
+            <div className="my-tooltip__content">{lastUpdate}</div>
+          </Tooltip>
+          <Tooltip id={'delete-tooltip-' + weatherData.name} className="my-tooltip" noArrow>
+            Supprimer
+          </Tooltip>
 
           {/* detail */}
           <div className="weather-card__body">
