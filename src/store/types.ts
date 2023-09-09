@@ -1,7 +1,6 @@
 export interface WeatherData {
   searchMethod: SearchMethod
   searchText?: string
-  datetime: string
   imageUrl?: string
   coord: {
     lon: number
@@ -21,11 +20,22 @@ export interface WeatherData {
     temp_max: number
     pressure: number
     humidity: number
+    sea_level?: number
+    grnd_level?: number
   }
   visibility: number
   wind: {
     speed: number
     deg: number
+    gust?: number
+  }
+  rain?: {
+    '1h'?: number
+    '3h'?: number
+  }
+  snow?: {
+    '1h'?: number
+    '3h'?: number
   }
   clouds: {
     all: number
@@ -41,7 +51,6 @@ export interface WeatherData {
   timezone: number
   id: number
   name: string
-  cod: number
 }
 
 export type GeolocationStatus = 'prompt' | 'granted' | 'denied'

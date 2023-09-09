@@ -5,14 +5,18 @@ export default class WeatherAPIService {
   private _lon: number = Infinity
   private _lat: number = Infinity
   private geolocationAPIService: GeolocationAPIService
+  private units: string
+  private language: string
 
-  constructor(appId: string) {
+  constructor(appId: string, units = 'metric', language = 'fr') {
+    this.units = units
+    this.language = language
     this._appId = appId
     this.geolocationAPIService = new GeolocationAPIService(this._appId)
   }
 
   private getUrl(): string {
-    return `http://api.openweathermap.org/data/2.5/weather?lat=${this._lat}&lon=${this._lon}&appid=${this._appId}`
+    return `http://api.openweathermap.org/data/2.5/weather?lat=${this._lat}&lon=${this._lon}&units=${this.units}&lang=${this.language}&appid=${this._appId}`
   }
 
   async fetchWeatherByCoordinates(lat: number, lon: number) {
@@ -30,7 +34,11 @@ export default class WeatherAPIService {
 
     try {
       const response = await fetch(url, options)
-      return await response.json()
+      const data = await response.json()
+      if (data.cod !== 200) {
+        throw new Error(data.message ? data.message : 'Echec de la demande.')
+      }
+      return data
     } catch (error) {
       console.error(error)
       throw error

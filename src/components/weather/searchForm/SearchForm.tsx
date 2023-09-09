@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addWeatherData } from '../../../store/actions/weatherActions'
 import { GeolocationStatus, SearchMethod, WeatherData } from '../../../store/types'
 import UnsplashAPIService from '../../../services/UnsplashAPIService'
-import { weatherConditions } from '../../../services/WeatherDataTranslate'
 import { toast } from 'react-toastify'
 import { RootState } from '../../../store/store'
 
@@ -101,12 +100,13 @@ const SearchForm: React.FC<SearchFormProps> = ({ setHighlightedCity }) => {
   }
 
   const handleWeatherDataSuccess = async (weatherData: WeatherData, searchMethod: SearchMethod) => {
-    // translate data to french
-    const matchingCondition = weatherConditions.find(
-      (condition) => condition.id === weatherData.weather[0].id
-    )
-    if (matchingCondition) weatherData.weather = [{ ...matchingCondition }]
-    // add searchText to weatherData if method city
+    // // translate data to french
+    // const matchingCondition = weatherConditions.find(
+    //   (condition) => condition.id === weatherData.weather[0].id
+    // )
+    // if (matchingCondition) weatherData.weather = [{ ...matchingCondition }]
+
+    // add searchText to weatherData if method city + re init form
     if (searchMethod === 'city') {
       weatherData.searchText = city
       // re init form
@@ -118,8 +118,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ setHighlightedCity }) => {
     weatherData.imageUrl =
       (await unsplashAPIService.getImageForCity(weatherData.searchText || weatherData.name)) ||
       undefined
-    // add current datetime to weatherData
-    weatherData.datetime = new Date().toISOString()
+
     dispatch(addWeatherData(weatherData))
   }
 
