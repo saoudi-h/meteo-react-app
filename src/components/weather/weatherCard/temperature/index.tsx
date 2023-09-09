@@ -19,8 +19,8 @@ const Temperature: React.FC<TemperatureProps> = ({ temperature, min, max, feelsL
       <div className={styles.temperature__main}>
         <div className={styles.temperature__left}>{main}</div>
         <div className={styles.temperature__right}>
-          <div className="celcius">°C</div>
-          <div className="rest">.{rest || 0}</div>
+          <div className={styles.units}>°C</div>
+          <div className={styles.rest}>.{rest || 0}</div>
         </div>
       </div>
 
@@ -28,7 +28,7 @@ const Temperature: React.FC<TemperatureProps> = ({ temperature, min, max, feelsL
         <TemperatureMinSvg />
         <div>
           {f(min)}
-          <span className={styles.unit}>C°</span>
+          <span className={styles.units}>C°</span>
         </div>
       </div>
 
@@ -36,7 +36,7 @@ const Temperature: React.FC<TemperatureProps> = ({ temperature, min, max, feelsL
         <TemperatureMaxSvg />
         <div>
           {f(max)}
-          <span className={styles.unit}>C°</span>
+          <span className={styles.units}>C°</span>
         </div>
       </div>
 
@@ -44,7 +44,7 @@ const Temperature: React.FC<TemperatureProps> = ({ temperature, min, max, feelsL
         <FeelsLikeSvg />
         <div>
           {f(feelsLike)}
-          <span className={styles.unit}>C°</span>
+          <span className={styles.units}>C°</span>
         </div>
       </div>
     </div>

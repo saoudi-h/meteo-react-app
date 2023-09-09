@@ -10,14 +10,21 @@
         align-items: center
         gap: 5px
         font-weight: 100
-        max-height: 4rem
+        padding: 0
     &__left
+        line-height: 3.1rem
         font-size: 4rem
     &__right
-        font-size: 1rem
+        height: 100%
         display: flex
         align-items: center
         flex-direction: column
+        justify-content: space-between
+        .rest
+            font-size: 1.5rem
+            line-height: 1.2rem
+
+
     .info
         display: flex
         flex-direction: row
@@ -27,9 +34,10 @@
         svg
             min-width: 15px
             max-width: 25px
-        .unit
-            opacity: .8
-            font-size: 0.8rem
-            font-weight: 100
-            padding:
-                left: 5px
+
+.units
+    opacity: .8
+    font-size: 0.8rem
+    font-weight: 100
+    padding:
+        left: 5px
