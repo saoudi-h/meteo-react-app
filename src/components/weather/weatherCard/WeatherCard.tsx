@@ -13,7 +13,6 @@ import Temperature from './temperature'
 import Infos from './infos'
 
 import Wind from './wind'
-import { Tooltip } from 'react-tooltip'
 import './WeatherCard.sass'
 import { formatDistanceToNow } from 'date-fns'
 import fr from 'date-fns/locale/fr'
@@ -97,134 +96,91 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   }
 
   return (
-    <>
-      {weatherData && (
-        <animated.div
-          className={classNames('weather-card', weatherData.searchMethod)}
-          style={{
-            backgroundImage: `url(${weatherData.imageUrl})`,
-            zIndex: isAnimating ? 10 : 0,
-            ...props
-          }}
-          id={`city-${weatherData.name}`}
-        >
-          {/* header */}
-          <div className="weather-card__header">
-            {/* header left */}
-            <div className="header-left">
-              <div className="header-left__logo">
-                {weatherData.searchMethod === 'geolocation' ? (
-                  <GeoLocationSvg />
-                ) : (
-                  <TimeLocationSvg />
-                )}
-                {/* <LocationTimeSvg /> */}
-              </div>
-              <div className="header-left__info">
-                <div className="city-name">
-                  {weatherData.name}, {weatherData.sys.country}
-                </div>
-                <div className="city-time">
-                  <WeatherClock timeZone={weatherData.timezone} />
-                </div>
-              </div>
+    <animated.div
+      className={classNames('weather-card', weatherData.searchMethod)}
+      style={{
+        backgroundImage: `url(${weatherData.imageUrl})`,
+        zIndex: isAnimating ? 10 : 0,
+        ...props
+      }}
+      id={`city-${weatherData.name}`}
+    >
+      {/* header ***************************************************************/}
+      <div className="weather-card__header">
+        {/* header left */}
+        <div className="header-left">
+          <div className="header-left__logo">
+            {weatherData.searchMethod === 'geolocation' ? <GeoLocationSvg /> : <TimeLocationSvg />}
+            {/* <LocationTimeSvg /> */}
+          </div>
+          <div className="header-left__info">
+            <div className="city-name">
+              {weatherData.name}, {weatherData.sys.country}
             </div>
-            {/* header right */}
-            <div className="header-right">
-              <button
-                className="header-right__update"
-                onClick={updateCard}
-                onMouseEnter={handleMouseEnterUpdate}
-                data-tooltip-id={'update-tooltip-' + weatherData.name}
-                data-tooltip-place="top"
-              >
-                <CardUpdateSvg />
-              </button>
-              <button
-                className="header-right__delete"
-                onClick={removeCard}
-                data-tooltip-id={'delete-tooltip-' + weatherData.name}
-              >
-                <CardDeleteSvg />
-              </button>
+            <div className="city-time">
+              <WeatherClock timeZone={weatherData.timezone} />
             </div>
           </div>
+        </div>
+        {/* header right */}
+        <div className="header-right">
+          <button
+            className="header-right__update"
+            onClick={updateCard}
+            onMouseEnter={handleMouseEnterUpdate}
+            data-tooltip-id="default-tooltip"
+            data-tooltip-content={'Mis à jour il y a ' + lastUpdate}
+          >
+            <CardUpdateSvg />
+          </button>
+          <button
+            className="header-right__delete"
+            onClick={removeCard}
+            data-tooltip-id="default-tooltip"
+            data-tooltip-content={'Supprimer'}
+          >
+            <CardDeleteSvg />
+          </button>
+        </div>
+      </div>
 
-          <Tooltip id={'update-tooltip-' + weatherData.name} className="my-tooltip" noArrow>
-            <div className="my-tooltip__content">{lastUpdate}</div>
-          </Tooltip>
-          <Tooltip id={'delete-tooltip-' + weatherData.name} className="my-tooltip" noArrow>
-            Supprimer
-          </Tooltip>
-
-          {/* detail */}
-          <div className="weather-card__body">
-            <div className="card-grid">
-              <div className="card-grid__icon">
-                <img
-                  src={`./images/WeatherAnimatedSvg/${weatherData.weather[0].icon}.svg`}
-                  alt={weatherData.weather[0].description}
-                  className="card-grid__img"
-                />
-              </div>
-
-              <div className="card-grid__wind">
-                <Wind data={weatherData.wind} />
-              </div>
-
-              <div className="card-grid__description">{weatherData.weather[0].description}</div>
-              <div className="card-grid__temperature">
-                <Temperature
-                  temperature={weatherData.main.temp}
-                  min={weatherData.main.temp_min}
-                  max={weatherData.main.temp_max}
-                  feelsLike={weatherData.main.feels_like}
-                />
-              </div>
-              <div className="card-grid__infos">
-                <Infos
-                  humidity={weatherData.main.humidity}
-                  pressure={weatherData.main.pressure}
-                  visibility={weatherData.visibility}
-                  clouds={weatherData.clouds.all}
-                />
-                <div></div>
-              </div>
-            </div>
-            {/* <div className="weather-summary">
-              {weatherData.weather[0].main} - {weatherData.weather[0].description}
-            </div>
-            <div className="temp">
-              <div>
-                <div className="temp__current">{celciusFromKelvin(weatherData.main.temp)}</div>
-              </div>
-              <div className="temp__feels_like">
-                ressenti : {celciusFromKelvin(weatherData.main.feels_like)}
-              </div>
-              <div className="temp__temp_min">
-                min : {celciusFromKelvin(weatherData.main.temp_min)}
-              </div>
-              <div className="temp__temp_max">
-                max : {celciusFromKelvin(weatherData.main.temp_max)}
-              </div>
-            </div>
-            <button className="expand-button" onClick={toggleDetails}>
-              {expandDetail ? 'Réduire' : 'Voir plus'}
-            </button>
-            {expandDetail && (
-              <div className="details">
-                <div>
-                  Coordonnées : {weatherData.coord.lat}, {weatherData.coord.lon}
-                </div>
-                <div>Pression : {weatherData.main.pressure} hPa</div>
-                <div>Humidité : {weatherData.main.humidity}%</div>
-                <div>Vitesse du vent : {weatherData.wind.speed} m/s</div>
-              </div>
-            )} */}
+      {/* body ******************************************************************/}
+      <div className="weather-card__body">
+        <div className="card-grid">
+          <div className="card-grid__icon">
+            <img
+              src={`./images/WeatherAnimatedSvg/${weatherData.weather[0].icon}.svg`}
+              alt={weatherData.weather[0].description}
+              className="card-grid__img"
+            />
           </div>
-        </animated.div>
-      )}
-    </>
+
+          <div className="card-grid__wind">
+            <Wind data={weatherData.wind} />
+          </div>
+
+          <div className="card-grid__description">{weatherData.weather[0].description}</div>
+
+          <div className="card-grid__temperature">
+            <Temperature
+              temperature={weatherData.main.temp}
+              min={weatherData.main.temp_min}
+              max={weatherData.main.temp_max}
+              feelsLike={weatherData.main.feels_like}
+            />
+          </div>
+
+          <div className="card-grid__infos">
+            <Infos
+              humidity={weatherData.main.humidity}
+              pressure={weatherData.main.pressure}
+              visibility={weatherData.visibility}
+              clouds={weatherData.clouds.all}
+            />
+          </div>
+        </div>
+      </div>
+    </animated.div>
   )
 }
 export default WeatherCard

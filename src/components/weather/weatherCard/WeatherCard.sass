@@ -2,21 +2,6 @@
 @use '../../../styles/media' as *
 @import '../../../styles/functions'
 
-.react-tooltip.my-tooltip
-    // background-color: rgba(255, 255, 255, 0.3)
-    padding: 6px 9px
-    border-radius: 40px
-    border: 1px solid $primary-200
-    background: rgba($primary-100,.5)
-    color: $primary-800
-    backdrop-filter: blur(4px)
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px
-
-.dark
-    .react-tooltip.my-tooltip
-        color: $primary-dark-800
-        background-color: rgba($primary-dark-100,0.5)
-        border: 1px solid $primary-dark-200
 
 body
     &.dark
@@ -29,7 +14,8 @@ body
                     background: rgba($primary-dark-100,.5)
                     color: $primary-dark-800
             &__body
-                background-color: rgba(0, 0, 0, 0.5)
+                background: rgba($primary-dark-100,.5)
+                color: $primary-dark-800
                 .card-grid
 
 $highlight-color: #f9e07e
@@ -119,7 +105,7 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
 
             &__delete
                 &:hover
-                    color: #990505
+                    color: #ca3b3b
                     transform: scale(1.1)
                 &:active
                     transform: scale(0.95)
@@ -129,6 +115,7 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
                     transition: all ease-in-out .3s
 
                 &:hover
+                    color: #3ba9ca
                     svg
                         filter: invert(20%)
                         transform: scale(1.1) rotateZ(-360deg)
@@ -138,7 +125,8 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
 
     &__body
         border-radius: 25px 25px 0px 0px
-        background-color: rgba(255, 255, 255, 0.5)
+        background: rgba($primary-100,.5)
+        color: $primary-800
         backdrop-filter: blur(4px)
         .card-grid
             height: 200px
