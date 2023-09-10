@@ -9,13 +9,10 @@ import { classNames } from '../../../lib/classnames'
 import { useSpring, animated } from '@react-spring/web'
 import { useDispatch } from 'react-redux'
 import { removeWeatherData } from '../../../store/actions/weatherActions'
-import Temperature from './temperature'
-import Infos from './infos'
-
-import Wind from './wind'
 import './WeatherCard.sass'
 import { formatDistanceToNow } from 'date-fns'
 import fr from 'date-fns/locale/fr'
+import WeatherBody from './WeatherBody'
 
 interface WeatherCardProps {
   weatherData: WeatherData
@@ -145,41 +142,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
       </div>
 
       {/* body ******************************************************************/}
-      <div className="weather-card__body">
-        <div className="card-grid">
-          <div className="card-grid__icon">
-            <img
-              src={`./images/WeatherAnimatedSvg/${weatherData.weather[0].icon}.svg`}
-              alt={weatherData.weather[0].description}
-              className="card-grid__img"
-            />
-          </div>
-
-          <div className="card-grid__wind">
-            <Wind data={weatherData.wind} />
-          </div>
-
-          <div className="card-grid__description">{weatherData.weather[0].description}</div>
-
-          <div className="card-grid__temperature">
-            <Temperature
-              temperature={weatherData.main.temp}
-              min={weatherData.main.temp_min}
-              max={weatherData.main.temp_max}
-              feelsLike={weatherData.main.feels_like}
-            />
-          </div>
-
-          <div className="card-grid__infos">
-            <Infos
-              humidity={weatherData.main.humidity}
-              pressure={weatherData.main.pressure}
-              visibility={weatherData.visibility}
-              clouds={weatherData.clouds.all}
-            />
-          </div>
-        </div>
-      </div>
+      <WeatherBody data={weatherData} />
     </animated.div>
   )
 }
