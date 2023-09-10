@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './temperature.module.sass'
-import TemperatureMinSvg from '../../../icons/TemperatureMinSvg'
-import TemperatureMaxSvg from '../../../icons/TemperatureMaxSvg'
-import FeelsLikeSvg from '../../../icons/FeelsLikeSvg'
+import TemperatureMinSvg from '../../../../icons/TemperatureMinSvg'
+import TemperatureMaxSvg from '../../../../icons/TemperatureMaxSvg'
+import FeelsLikeSvg from '../../../../icons/FeelsLikeSvg'
 
 interface TemperatureProps {
   temperature: number
