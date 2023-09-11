@@ -13,8 +13,7 @@
         justify-content: space-between
         padding: 15px
         &__description
-            grid-column-start: 1
-            grid-column-end: 2
+            flex-grow: 1
             display: flex
             flex-direction: column
             align-items: center
@@ -22,15 +21,17 @@
             position: relative
             img
                 display: block
-                height: 70%
+                min-height: 90px
+                max-width: 115px
             .description__text
-                font-weight: 100
-                font-size: 1.1rem
+                font-weight: 700
+                font-size: .9rem
                 text-align: center
+                min-width: 80px
+                max-width: 100px
 
         &__tab
-            grid-column-start: 2
-            grid-column-end: 3
+            flex-grow: 1
             display: flex
             flex-direction: column
             align-items: center
@@ -49,12 +50,10 @@
         //     font-weight: 200
 
         &__infos
-            grid-column-start: 3
-            grid-column-end: 4
+            flex-grow: 1
             display: flex
             justify-content: center
 
         &__temperature
-            grid-column-start: 4
-            grid-column-end: 5
+            flex-grow: 1
             display: flex
