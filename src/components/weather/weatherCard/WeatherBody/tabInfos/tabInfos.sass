@@ -1,5 +1,12 @@
 @use '../../../../../styles/colors' as *
 
+body
+    &.dark
+        .pageInfos
+            .pageInfo
+                &__rs
+                    background: rgba($primary-dark-200,.5)
+
 .weather-tab
     display: flex
     justify-content: center
@@ -7,7 +14,8 @@
     flex-direction: row
     justify-content: space-between
     list-style: none
-    height: 36px
+    min-height: 36px
+    min-width: 96px
     position: relative
     padding:
         left: 3px
@@ -15,7 +23,6 @@
     border-radius: 18px
     backdrop-filter: invert(0.1)
     margin: 0
-
 
     &__switch
         height: 30px
@@ -28,47 +35,66 @@
         width: 30px
 
     &__svg-box
-            height: 30px
-            width: 30px
-            border-radius: 18px
-            display: flex
-            align-items: center
-            justify-content: center
-            & > svg
-                height: 20px
-                width: 20px
+        height: 30px
+        width: 30px
+        border-radius: 18px
+        display: flex
+        align-items: center
+        justify-content: center
+        & > svg
+            height: 20px
+            width: 20px
 
-    
-.weather-tab__pages
-    list-style: none
-    overflow: hidden
+.weather-pages
     width: 100%
-    padding: 0
-    margin: 0
+    overflow: hidden
+
+    &__list
+        list-style: none
+        width: 100%
+        height: 300%
+        padding: 0
+        margin: 0
+        display: grid
+        grid-template-rows: repeat(3, 1fr)
 
     li
         display: flex
         align-items: center
         justify-content: center
         width: 100%
-        height:100%
 
-.windInfos
-
+.pageInfos
+    height: 100%
     width: 100%
     display: flex
     flex-direction: column
-    .windInfo
+    justify-content: space-evenly
+    .pageInfo
         display: flex
         flex-direction: row
-        justify-content: space-evenly
+        justify-content: space-between
         align-items: center
+        font-size: .9rem
+
+        &__rs
+            padding: 2px 4px
+            font-size: .7rem
+            background: rgba($primary-200,.5)
+            border-radius: 50%
         .units
             opacity: .8
             font-size: 0.8rem
             font-weight: 100
             padding:
                 left: 5px
+
+        .compass-container
+            svg
+                max-width: 45px
+                max-height: 45px
+                min-width: 35px
+                min-height: 35px
         svg
             max-width: 25px
             max-height: 25px
