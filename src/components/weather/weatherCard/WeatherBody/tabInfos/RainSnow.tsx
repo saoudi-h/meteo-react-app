@@ -7,9 +7,9 @@ interface SnowProps {
 
 const RainSnow: React.FC<SnowProps> = ({ oneH, threeH }) => {
   return (
-    <div className="windInfos">
-      <div className="windInfo">
-        <div>1H</div>
+    <div className="pageInfos">
+      <div className="pageInfo">
+        <div className="pageInfo__rs">1H</div>
         {oneH ? (
           <div>
             {oneH}
@@ -20,8 +20,8 @@ const RainSnow: React.FC<SnowProps> = ({ oneH, threeH }) => {
         )}
       </div>
 
-      <div className="windInfo">
-        <div>3H</div>
+      <div className="pageInfo">
+        <div className="pageInfo__rs">3H</div>
         {threeH ? (
           <div>
             {threeH}
