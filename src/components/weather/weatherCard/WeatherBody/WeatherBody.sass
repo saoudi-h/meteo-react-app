@@ -12,25 +12,15 @@
         display: flex
         justify-content: space-between
         padding: 15px
+        gap: 10px
         &__description
-            grid-column-start: 1
-            grid-column-end: 2
+            flex-grow: 1
             display: flex
-            flex-direction: column
-            align-items: center
-            justify-content: flex-start
-            position: relative
-            img
-                display: block
-                height: 70%
-            .description__text
-                font-weight: 100
-                font-size: 1.1rem
-                text-align: center
+            
+
 
         &__tab
-            grid-column-start: 2
-            grid-column-end: 3
+            flex-grow: 1
             display: flex
             flex-direction: column
             align-items: center
@@ -49,12 +39,10 @@
         //     font-weight: 200
 
         &__infos
-            grid-column-start: 3
-            grid-column-end: 4
+            flex-grow: 1
             display: flex
             justify-content: center
 
         &__temperature
-            grid-column-start: 4
-            grid-column-end: 5
+            flex-grow: 1
             display: flex

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import './tabInfos.sass'
 import WindSvg from '../../../../icons/WindSvg'
 import RainSvg from '../../../../icons/RainSvg'
 import SnowSvg from '../../../../icons/SnowSvg'
-import { useSpring, animated } from '@react-spring/web'
+import { useSpring, animated, useSpringValue } from '@react-spring/web'
 import { classNames } from '../../../../../lib/classnames'
 import { WeatherData } from '../../../../../store/types'
 import Wind from './Wind'
@@ -23,6 +23,7 @@ interface TabInfosProps {
 const TabInfos: React.FC<TabInfosProps> = ({ weatherData }) => {
   const itemLength = 30
   const marginSwitch = 3
+  const containerRef = useRef<HTMLDivElement>(null)
   const listTab: TabItem[] = [
     {
       id: 0,
@@ -61,6 +62,14 @@ const TabInfos: React.FC<TabInfosProps> = ({ weatherData }) => {
     }
   }))
 
+  const y = useSpringValue(0, {
+    config: {
+      mass: 3,
+      tension: 300,
+      friction: 26
+    }
+  })
+
   const handleItemClick = (tabName: Tab) => {
     if (tabName !== selected.name) {
       setSelected(listTab.find((item) => item.name === tabName) || listTab[0])
@@ -82,6 +91,8 @@ const TabInfos: React.FC<TabInfosProps> = ({ weatherData }) => {
       right: getRightValue(),
       borderRadius: getBorderRadius()
     })
+
+    y.start(-selected.id * (containerRef.current?.clientHeight || 0))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected])
 
@@ -108,18 +119,19 @@ const TabInfos: React.FC<TabInfosProps> = ({ weatherData }) => {
           </li>
         ))}
       </ul>
-
-      <ul className="weather-tab__pages">
-        <li>
-          <Wind {...weatherData.wind} />
-        </li>
-        <li>
-          <RainSnow oneH={weatherData.rain?.['1h']} threeH={weatherData.rain?.['3h']} />
-        </li>
-        <li>
-          <RainSnow oneH={weatherData.snow?.['1h']} threeH={weatherData.snow?.['3h']} />
-        </li>
-      </ul>
+      <div className="weather-pages" ref={containerRef}>
+        <animated.ul className="weather-pages__list" style={{ y }}>
+          <li>
+            <Wind {...weatherData.wind} />
+          </li>
+          <li>
+            <RainSnow oneH={weatherData.rain?.['1h']} threeH={weatherData.rain?.['3h']} />
+          </li>
+          <li>
+            <RainSnow oneH={weatherData.snow?.['1h']} threeH={weatherData.snow?.['3h']} />
+          </li>
+        </animated.ul>
+      </div>
     </>
   )
 }

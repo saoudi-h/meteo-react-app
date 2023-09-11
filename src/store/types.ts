@@ -66,6 +66,11 @@ export interface AddWeatherDataAction {
   payload: WeatherData
 }
 
+export interface UpdateWeatherDataAction {
+  type: 'weatherData/update'
+  payload: WeatherData
+}
+
 export interface ClearWeatherDataAction {
   type: 'weatherData/clear'
 }
@@ -79,3 +84,4 @@ export type WeatherActionTypes =
   | AddWeatherDataAction
   | ClearWeatherDataAction
   | RemoveWeatherDataAction
+  | UpdateWeatherDataAction
