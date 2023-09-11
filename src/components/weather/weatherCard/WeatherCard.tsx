@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { WeatherData } from '../../../store/types'
+import { SearchMethod, WeatherData } from '../../../store/types'
 import WeatherClock from './weatherClock/WeatherClock'
 import CardUpdateSvg from '../../icons/CardUpdateSvg'
 import CardDeleteSvg from '../../icons/CardDeleteSvg'
@@ -7,12 +7,20 @@ import GeoLocationSvg from '../../icons/GeoLocationSvg'
 import TimeLocationSvg from '../../icons/TimeLocationSvg'
 import { classNames } from '../../../lib/classnames'
 import { useSpring, animated } from '@react-spring/web'
-import { useDispatch } from 'react-redux'
-import { removeWeatherData } from '../../../store/actions/weatherActions'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  addWeatherData,
+  removeWeatherData,
+  updateWeatherData
+} from '../../../store/actions/weatherActions'
 import './WeatherCard.sass'
 import { formatDistanceToNow } from 'date-fns'
 import fr from 'date-fns/locale/fr'
 import WeatherBody from './WeatherBody'
+import UnsplashAPIService from '../../../services/UnsplashAPIService'
+import WeatherAPIService from '../../../services/WeatherAPIService'
+import { RootState } from '../../../store/store'
+import { toast } from 'react-toastify'
 
 interface WeatherCardProps {
   weatherData: WeatherData
@@ -23,6 +31,14 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   weatherData,
   highlighted
 }: WeatherCardProps) => {
+  const weatherTokenApi = process.env.REACT_APP_WEATHER_TOKEN || ''
+  const unsplashTokenApi = process.env.REACT_APP_UNSPLASH_TOKEN || ''
+  const weatherAPIService: WeatherAPIService = new WeatherAPIService(weatherTokenApi)
+  const unsplashAPIService: UnsplashAPIService = new UnsplashAPIService(unsplashTokenApi)
+  const weatherDataList = useSelector(
+    (state: RootState) => state.weatherDataListState.weatherDataList
+  )
+
   const dispatch = useDispatch()
   const timesLooped = useRef(0)
   const timeoutRef = useRef<NodeJS.Timeout>()
@@ -80,9 +96,18 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
 
   useEffect(() => () => clearTimeout(timeoutRef.current), [])
 
-  function updateCard(event: React.MouseEvent): void {
-    // TODO UpdateCard
-    throw new Error('Function not implemented.')
+  const updateCard = async () => {
+    try {
+      const newWeatherData = await weatherAPIService.fetchWeatherByCoordinates(
+        weatherData.coord.lat,
+        weatherData.coord.lon
+      )
+      console.log(newWeatherData)
+      newWeatherData.searchMethod = weatherData.searchMethod
+      dispatch(updateWeatherData(newWeatherData))
+    } catch (e: any) {
+      toast.error(e.message)
+    }
   }
 
   function removeCard(): void {
