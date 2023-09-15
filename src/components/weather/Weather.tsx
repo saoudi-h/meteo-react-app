@@ -16,7 +16,7 @@ const Weather: React.FC = () => {
     if (highlightedCity) {
       const timeout = setTimeout(() => {
         setHighlightedCity(null)
-      }, 1000)
+      }, 5000)
 
       return () => clearTimeout(timeout)
     }

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { SearchMethod, WeatherData } from '../../../store/types'
+import { WeatherData } from '../../../store/types'
 import WeatherClock from './weatherClock/WeatherClock'
 import CardUpdateSvg from '../../icons/CardUpdateSvg'
 import CardDeleteSvg from '../../icons/CardDeleteSvg'
@@ -8,11 +8,7 @@ import TimeLocationSvg from '../../icons/TimeLocationSvg'
 import { classNames } from '../../../lib/classnames'
 import { useSpring, animated } from '@react-spring/web'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  addWeatherData,
-  removeWeatherData,
-  updateWeatherData
-} from '../../../store/actions/weatherActions'
+import { removeWeatherData, updateWeatherData } from '../../../store/actions/weatherActions'
 import './WeatherCard.sass'
 import { formatDistanceToNow } from 'date-fns'
 import fr from 'date-fns/locale/fr'
@@ -34,16 +30,11 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   const weatherTokenApi = process.env.REACT_APP_WEATHER_TOKEN || ''
   const unsplashTokenApi = process.env.REACT_APP_UNSPLASH_TOKEN || ''
   const weatherAPIService: WeatherAPIService = new WeatherAPIService(weatherTokenApi)
-  const unsplashAPIService: UnsplashAPIService = new UnsplashAPIService(unsplashTokenApi)
-  const weatherDataList = useSelector(
-    (state: RootState) => state.weatherDataListState.weatherDataList
-  )
 
   const dispatch = useDispatch()
   const timesLooped = useRef(0)
   const timeoutRef = useRef<NodeJS.Timeout>()
-  const [isAnimating, setIsAnimating] = useState(false)
-
+  const isAnimating = useRef<boolean>(false)
   const [lastUpdate, setLastUpdate] = useState<string>('')
   const handleMouseEnterUpdate = () => {
     setLastUpdate(formatDistanceToNow(new Date(weatherData.dt * 1000), { locale: fr }))
@@ -62,35 +53,39 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
     []
   )
 
-  const [expandDetail, setExpandDetail] = useState<boolean>(false)
-  const toggleDetails = () => {
-    setExpandDetail(!expandDetail)
-  }
-
   useEffect(() => {
     if (highlighted) handleHighlighted()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [highlighted])
 
   const handleHighlighted = () => {
-    if (!isAnimating) {
-      setIsAnimating(true)
+    if (!isAnimating.current) {
+      isAnimating.current = true
       timesLooped.current = 0
 
       api.start({
         scale: 1.1,
         loop: () => {
-          if (2 === timesLooped.current++) {
+          if (3 === timesLooped.current++) {
             timeoutRef.current = setTimeout(() => {
-              api.set({ scale: 1 })
               timeoutRef.current = undefined
-              setIsAnimating(false)
+              isAnimating.current = false
+              api.start({ scale: 1 })
             }, 2000)
             api.stop()
+          }
+          if (timesLooped.current > 10) {
+            api.start({ scale: 1 })
+            timeoutRef.current = undefined
+            isAnimating.current = false
           }
           return { reverse: true }
         }
       })
+    } else {
+      clearTimeout(timeoutRef.current)
+      api.start({ scale: 1 })
+      isAnimating.current = false
     }
   }
 
@@ -102,7 +97,6 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
         weatherData.coord.lat,
         weatherData.coord.lon
       )
-      console.log(newWeatherData)
       newWeatherData.searchMethod = weatherData.searchMethod
       dispatch(updateWeatherData(newWeatherData))
     } catch (e: any) {
@@ -122,7 +116,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
       className={classNames('weather-card', weatherData.searchMethod)}
       style={{
         backgroundImage: `url(${weatherData.imageUrl})`,
-        zIndex: isAnimating ? 10 : 0,
+        zIndex: highlighted ? 20 : 0,
         ...props
       }}
       id={`city-${weatherData.name}`}
