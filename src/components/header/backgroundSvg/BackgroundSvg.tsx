@@ -56,13 +56,6 @@ const BackgroundSvg: React.FC = () => {
               stitchTiles="stitch"
               type="fractalNoise"
             ></feTurbulence>
-            <feGaussianBlur
-              x="0%"
-              y="0%"
-              in="turbulence"
-              result="blur"
-              stdDeviation="27 27"
-            ></feGaussianBlur>
             <feBlend
               x="0%"
               y="0%"
