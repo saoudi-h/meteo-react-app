@@ -39,13 +39,16 @@
 	li
 		margin: 0 16px
 
-	a
-		text-decoration: none
-		color: currentColor
+		a
+			text-decoration: none
+			color: currentColor
+			perspective: 100px
+			perspective-origin: 50% 50%
 
-		svg
-			max-width: 25px
+			svg
+				max-width: 25px
+				transition: transform 1s ease-in-out
 
-		&:hover svg
-			transition: transform 2s ease
-			transform: rotateY(360deg)
+			&:hover svg
+
+				transform: rotateY(-360deg)

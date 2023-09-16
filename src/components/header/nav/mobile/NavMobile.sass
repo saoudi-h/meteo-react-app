@@ -1,0 +1,105 @@
+@use '../../../../styles/colors' as *
+@import '../../../../styles/functions'
+
+body
+    &.dark
+        .nav-mobile
+            color: $primary-dark-800
+            &__list
+                color: $primary-dark-800
+                color: $primary-dark-700
+                border: 1px solid $primary-dark-300
+                background: rgba($primary-dark-100,.3)
+                li
+                    &:hover
+                        background: rgba($primary-dark-50 ,0.2 )
+
+.nav-mobile
+    color: $primary-800
+    position: relative
+    perspective: 100px
+    perspective-origin: 50% 50%
+    &__modal
+        position: fixed
+        z-index: 1300
+        inset: 0
+        top: 60px
+        display: flex
+        align-items: center
+        justify-content: center
+
+    &__backdrop
+        z-index: -1
+        position: fixed
+        inset: 0
+        background-color: rgba($primary-800, 0.5)
+        backdrop-filter: blur(2px)
+        -webkit-tap-highlight-color: transparent
+
+    &__button
+        border: none
+        background: none
+        padding: 0
+        margin: 0
+        color: inherit
+        backdrop-filter: invert(0.1)
+        border-radius: 30px
+        padding: 0 15px
+        display: flex
+        flex-direction: row
+        align-items: center
+        justify-content: center
+        cursor: pointer
+        transition: transform ease-in-out 0.3s
+        will-change: transform
+        &:hover
+            transform: rotateX(-25deg)
+
+        svg
+            min-width: 36px
+            max-width: 36px
+
+    &__list
+        margin: 0 20px
+        width: calc(100% - 40px)
+        position: fixed
+        top: 60px
+        left: 0
+        color: $primary-800
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        justify-content: space-between
+        list-style: none
+        padding: 20px
+        border-radius: 30px
+        backdrop-filter: blur(20px)
+        color: $primary-700
+        border: 1px solid $primary-300
+        background: rgba($primary-800,.1)
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px
+
+        li
+            display: flex
+            justify-content: center
+            align-items: center
+            width: 100%
+            background: transparent
+            transition: background ease-in-out .2s
+            border-radius: 15px
+            &:hover
+                background: rgba($primary-50 ,0.4 )
+
+            .link
+                color: currentColor
+                font-family: Mulish
+                font-size: 14px
+                font-weight: 300
+                text-decoration: none
+                display: flex
+                flex-direction: row
+                align-items: center
+                justify-content: center
+                height: 50px
+                padding: 0 16px

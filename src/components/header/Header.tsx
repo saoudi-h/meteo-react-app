@@ -19,7 +19,7 @@ const Header: React.FC = () => {
           </div>
           <nav>
             <Nav />
-            <ul>
+            <ul className="header-centered__right">
               <li>
                 <ToggleTheme />
               </li>
