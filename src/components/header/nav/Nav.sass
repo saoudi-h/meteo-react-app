@@ -1,6 +1,15 @@
 @use '../../../styles/colors' as *
 
+body
+    &.dark
+        .nav-toggle
+            color: $primary-dark-800
+            .toggle-item__switch
+                background: rgba($primary-dark-50 ,0.2 )
+
 .nav-toggle
+    margin: 0
+    color: $primary-800
     display: flex
     justify-content: center
     align-items: center
@@ -14,14 +23,12 @@
         right: 3px
     border-radius: 18px
     backdrop-filter: invert(0.1)
-    margin: 0
-
 
     .toggle-item__switch
         height: 30px
         top: 3px
         position: absolute
-        background: rgba(0,0 ,0 ,0.2 )
+        background: rgba($primary-50 ,0.4 )
         z-index: -1
 
     li

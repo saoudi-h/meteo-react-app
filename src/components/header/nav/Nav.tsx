@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react'
 import './Nav.sass'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useSpring, animated } from '@react-spring/web'
-
-interface NavItem {
-  path: string
-  name: string
-}
+import { NavItem } from './navTypes'
+import NavMobile from './mobile'
 
 const Nav: React.FC = () => {
+  const mediaMd = 768
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= mediaMd)
   const location = useLocation()
   const defaultNavItems = [
     { path: '/', name: 'Accueil' },
@@ -77,7 +76,8 @@ const Nav: React.FC = () => {
       left: getLeftValue(),
       right: getRightValue(),
       borderRadius: getBorderRadius()
-    }
+    },
+    config: { mass: 4, tension: 400, friction: 70 }
   }))
 
   useEffect(() => {
@@ -116,6 +116,21 @@ const Nav: React.FC = () => {
     setNavItems([...defaultNavItems])
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= mediaMd)
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  if (isMobile) {
+    return <NavMobile navItems={navItems} />
+  }
   return (
     <ul className="nav-toggle" id="nav-toggle">
       <animated.div className="toggle-item__switch" style={{ ...springs }} />
