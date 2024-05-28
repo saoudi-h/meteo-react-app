@@ -133,7 +133,7 @@ const Nav: React.FC = () => {
   }
   return (
     <ul className="nav-toggle" id="nav-toggle">
-      <animated.div className="toggle-item__switch" style={{ ...springs }} />
+      <animated.li className="toggle-item__switch" style={{ ...springs }} />
       {navItems.map((item) => (
         <li key={item.path}>
           <NavLink

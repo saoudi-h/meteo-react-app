@@ -4,7 +4,6 @@ import NavButtonSvg from '../../../icons/NavButtonSvg'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useTrail, animated, useSpring } from '@react-spring/web'
 import { NavItem } from '../navTypes'
-import { Spin as Hamburger } from 'hamburger-react'
 import { Modal } from '@mui/base/Modal'
 import { classNames } from '../../../../lib/classnames'
 import PropTypes from 'prop-types'
@@ -46,7 +45,6 @@ const NavMobile: React.FC<NavMobileProps> = ({ navItems }) => {
         <NavButtonSvg open={isOpen} />
         <div>{selectedItem.name}</div>
       </button>
-      {/* <Hamburger toggled={isOpen} toggle={setOpen}></Hamburger> */}
 
       <Modal
         aria-labelledby="unstyled-modal-title"
@@ -57,7 +55,6 @@ const NavMobile: React.FC<NavMobileProps> = ({ navItems }) => {
         className="nav-mobile__modal"
         closeAfterTransition
       >
-        {/* @ts-ignore */}
         <Fade in={isOpen}>
           <animated.ul className="nav-mobile__list" style={{ ...props }}>
             <Trail open={isOpen}>
@@ -116,8 +113,15 @@ const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>((props, ref) =>
   )
 })
 
-const Fade = React.forwardRef(function Fade(props, ref) {
-  // @ts-ignore
+type FadeProps = {
+  children: React.ReactElement
+  in?: boolean
+  onEnter?: (node: HTMLElement | null, isAppearing: boolean) => void
+  onExited?: (node: HTMLElement | null, isAppearing: boolean) => void
+  [key: string]: any
+}
+
+const Fade = React.forwardRef<HTMLDivElement, FadeProps>(function Fade(props, ref) {
   const { in: open, children, onEnter, onExited, ...other } = props
   const style = useSpring({
     from: { opacity: 0 },
@@ -135,7 +139,6 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   })
 
   return (
-    // @ts-ignore
     <animated.div ref={ref} style={style} {...other}>
       {children}
     </animated.div>
@@ -143,7 +146,6 @@ const Fade = React.forwardRef(function Fade(props, ref) {
 })
 
 Fade.propTypes = {
-  // @ts-ignore
   children: PropTypes.element.isRequired,
   in: PropTypes.bool,
   onEnter: PropTypes.func,

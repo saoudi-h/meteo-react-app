@@ -32,7 +32,7 @@ const BackgroundSvg: React.FC = () => {
             x2="50%"
             y1="0%"
             y2="100%"
-            gradientTransform={`180 .5 .5)`}
+            gradientTransform={`rotate(180 .5 .5)`}
           >
             <animated.stop offset="0%" stopColor={primary}></animated.stop>
             <animated.stop offset="100%" stopColor={secondary}></animated.stop>

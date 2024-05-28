@@ -27,7 +27,7 @@ const ToolDevList = () => {
 
   return (
     <div className="tool-dev">
-      <h3>Outils utilisés</h3>
+      <h2 style={{ fontSize: '1.26rem' }}>Outils utilisés</h2>
       <div className="tool-dev__list">
         {tools.map((tool, index) => (
           <ToolDev key={index} name={tool.name}>
