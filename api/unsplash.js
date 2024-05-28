@@ -1,4 +1,4 @@
-import nodeFetch from 'node-fetch'
+const nodeFetch = require('node-fetch')
 
 module.exports = async (req, res) => {
   const { query } = req.query

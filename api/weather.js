@@ -1,6 +1,6 @@
-import nodeFetch from 'node-fetch'
+const nodeFetch = require('node-fetch')
 
-export async function handler(req, res) {
+module.export = async (req, res) => {
   const { searchParams } = new URL(req.url)
   const lat = searchParams.get('lat')
   const lon = searchParams.get('lon')
