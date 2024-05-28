@@ -15,9 +15,6 @@ export async function GET(request: Request) {
   }
 
   const geoAPIKey = process.env.WEATHER_API_KEY as string
-  console.log('geoAPIKey:', geoAPIKey)
-  console.log('WEATHER_API_KEY:', geoAPIKey)
-  console.log('city:', city)
   const apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(
     city
   )}&limit=1&appid=${geoAPIKey}`

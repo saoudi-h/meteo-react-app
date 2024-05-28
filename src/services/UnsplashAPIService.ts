@@ -5,7 +5,6 @@ export default class UnsplashAPIService {
     return fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         return data.imageUrl
       })
   }

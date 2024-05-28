@@ -17,11 +17,8 @@ export async function GET(request: Request) {
   console.log('apiUrl:', apiUrl)
 
   try {
-    console.log('before fetch')
     const response = await fetch(apiUrl, { method: 'GET' })
-    console.log('after fetch')
     const data = await response.json()
-    console.log('data:', data)
     const randomImageIndex = Math.floor(Math.random() * data.results.length)
     const imageUrl = data.results[randomImageIndex].urls.regular
     return new Response(JSON.stringify({ imageUrl }), {
