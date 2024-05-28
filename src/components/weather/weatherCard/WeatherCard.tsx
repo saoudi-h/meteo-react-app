@@ -142,6 +142,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
         <div className="header-right">
           <button
             className="header-right__update"
+            aria-label="Mettre à jour la carte"
             onClick={updateCard}
             onMouseEnter={handleMouseEnterUpdate}
             data-tooltip-id="default-tooltip"
@@ -151,6 +152,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
           </button>
           <button
             className="header-right__delete"
+            aria-label="Supprimer la carte"
             onClick={removeCard}
             data-tooltip-id="default-tooltip"
             data-tooltip-content={'Supprimer'}
