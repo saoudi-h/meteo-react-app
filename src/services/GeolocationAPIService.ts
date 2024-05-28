@@ -1,19 +1,13 @@
 export default class GeolocationAPIService {
   private _cityName: string
-  private _appId: string
   private _limit: number = 1
 
-  constructor(appId: string, cityName: string = '') {
-    this._appId = appId
+  constructor(cityName: string = '') {
     this._cityName = cityName
   }
 
   get cityName(): string {
     return this._cityName
-  }
-
-  get appId(): string {
-    return this._appId
   }
 
   get limit(): number {
@@ -24,22 +18,17 @@ export default class GeolocationAPIService {
     this._cityName = value
   }
 
-  set appId(value: string) {
-    this._appId = value
-  }
-
   set limit(value: number) {
     this._limit = value
   }
 
-  setAll(cityName: string, appId: string, limit: number) {
+  setAll(cityName: string, limit: number) {
     this._cityName = cityName
-    this._appId = appId
     this._limit = limit
   }
 
-  private getCoordinatesUrl(): string {
-    return `https://api.openweathermap.org/geo/1.0/direct?q=${this._cityName}&limit=${this._limit}&appid=${this._appId}`
+  private getCoordinatesUrl(city: string): string {
+    return `/api/geolocation?city=${encodeURIComponent(city)}&limit=${this._limit}`
   }
 
   async getCoordinatesForCity(city: string = ''): Promise<any> {
@@ -47,7 +36,7 @@ export default class GeolocationAPIService {
       this._cityName = city
     }
 
-    const url = this.getCoordinatesUrl()
+    const url = this.getCoordinatesUrl(this._cityName)
     const options = {
       method: 'GET'
     }
@@ -56,7 +45,7 @@ export default class GeolocationAPIService {
       const response = await fetch(url, options)
       return await response.json()
     } catch (error) {
-      console.error(error)
+      console.error("Une erreur s'est produite lors de la récupération des coordonnées:", error)
       throw error
     }
   }

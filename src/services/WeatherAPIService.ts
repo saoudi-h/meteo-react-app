@@ -1,22 +1,20 @@
 import GeolocationAPIService from './GeolocationAPIService'
 
 export default class WeatherAPIService {
-  private _appId: string
   private _lon: number = Infinity
   private _lat: number = Infinity
   private geolocationAPIService: GeolocationAPIService
   private units: string
   private language: string
 
-  constructor(appId: string, units = 'metric', language = 'fr') {
+  constructor(units = 'metric', language = 'fr') {
     this.units = units
     this.language = language
-    this._appId = appId
-    this.geolocationAPIService = new GeolocationAPIService(this._appId)
+    this.geolocationAPIService = new GeolocationAPIService()
   }
 
-  private getUrl(): string {
-    return `http://api.openweathermap.org/data/2.5/weather?lat=${this._lat}&lon=${this._lon}&units=${this.units}&lang=${this.language}&appid=${this._appId}`
+  private getUrl(lat: number, lon: number): string {
+    return `/api/weather?lat=${lat}&lon=${lon}&units=${this.units}&lang=${this.language}`
   }
 
   async fetchWeatherByCoordinates(lat: number, lon: number) {
@@ -24,10 +22,7 @@ export default class WeatherAPIService {
       throw new Error('Latitude ou longitude invalide.')
     }
 
-    this._lat = lat
-    this._lon = lon
-
-    const url = this.getUrl()
+    const url = this.getUrl(lat, lon)
     const options = {
       method: 'GET'
     }

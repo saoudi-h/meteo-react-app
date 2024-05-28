@@ -16,13 +16,9 @@ interface SearchFormProps {
 const SearchForm: React.FC<SearchFormProps> = ({ setHighlightedCity }) => {
   const dispatch = useDispatch()
 
-  const weatherTokenApi = process.env.REACT_APP_WEATHER_TOKEN || ''
+  const weatherAPIService: WeatherAPIService = new WeatherAPIService()
 
-  const unsplashTokenApi = process.env.REACT_APP_UNSPLASH_TOKEN || ''
-
-  const weatherAPIService: WeatherAPIService = new WeatherAPIService(weatherTokenApi)
-
-  const unsplashAPIService: UnsplashAPIService = new UnsplashAPIService(unsplashTokenApi)
+  const unsplashAPIService: UnsplashAPIService = new UnsplashAPIService()
 
   const [city, setCity] = useState('')
 
