@@ -1,7 +1,7 @@
 import nodeFetch from 'node-fetch'
 
-export async function GET(request: Request): Promise<Response> {
-  const { searchParams } = new URL(request.url)
+export async function handler(req, res) {
+  const { searchParams } = new URL(req.url)
   const lat = searchParams.get('lat')
   const lon = searchParams.get('lon')
   const units = searchParams.get('units')
@@ -16,23 +16,9 @@ export async function GET(request: Request): Promise<Response> {
     if (data.cod !== 200) {
       throw new Error(data.message ? data.message : 'Failed to fetch weather data.')
     }
-
-    return new Response(JSON.stringify(data), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    res.status(200).json(data)
   } catch (error) {
     console.error('Error fetching weather data from OpenWeatherMap:', error)
-    return new Response(
-      JSON.stringify({ error: 'Failed to fetch weather data from OpenWeatherMap' }),
-      {
-        status: 500,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    )
+    res.status(500).json({ error: 'Failed to fetch weather data from OpenWeatherMap' })
   }
 }
