@@ -2,6 +2,7 @@
   "name": "meteo-react-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@mui/base": "^5.0.0-beta.15",
     "@react-spring/web": "^9.7.3",
