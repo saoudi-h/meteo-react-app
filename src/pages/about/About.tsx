@@ -135,6 +135,14 @@ const About = () => {
               </a>
               .
             </p>
+
+            <h3 id="use-local-storage">Utilisation du stockage local</h3>
+            <p>
+              Cette application utilise le stockage local (localStorage) de votre navigateur pour
+              sauvegarder vos recherches de villes et les résultats météo correspondants. Cela
+              permet de retrouver rapidement vos recherches précédentes sans avoir à les redemander
+              aux serveurs. Aucune donnée personnelle n'est collectée ou partagée.
+            </p>
           </div>
         </section>
       </main>
