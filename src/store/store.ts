@@ -13,7 +13,8 @@ export type RootState = ReturnType<typeof rootReducer>
 
 const store = configureStore({
   reducer: rootReducer,
-  preloadedState: persistedState
+  preloadedState: persistedState,
+  devTools: process.env.NODE_ENV === 'development'
 })
 
 store.subscribe(() => {
