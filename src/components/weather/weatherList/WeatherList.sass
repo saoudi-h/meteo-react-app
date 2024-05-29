@@ -5,16 +5,11 @@
         top: 80px
         bottom: 100px
 
-    display: grid
-    grid-gap: 20px
-    justify-content: space-around
-    grid-template-columns: repeat(1fr, 1fr)
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    gap: 20px
+    justify-items: center
+    justify-content: center
+    grid-template-columns: minmax("300px", 3fr)
     position: relative
-
-@media screen and ( min-width: $media-lg)
-    .weather-list
-        grid-template-columns: repeat(2, 1fr)
-
-@media screen and ( min-width: $media-xl)
-    .weather-list
-        grid-template-columns: repeat(3, 1fr)
