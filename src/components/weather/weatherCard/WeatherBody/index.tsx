@@ -14,7 +14,7 @@ const WeatherBody: React.FC<WeatherBodyProps> = ({ data }) => {
   return (
     <div className="weather-card__body">
       <div className="card-grid">
-        <div className="card-grid__description">
+        <div className="card-grid__description cell">
           <DescriptionCard
             icon={data.weather[0].icon}
             description={data.weather[0].description}
@@ -24,11 +24,11 @@ const WeatherBody: React.FC<WeatherBodyProps> = ({ data }) => {
           />
         </div>
 
-        <div className="card-grid__tab">
+        <div className="card-grid__tab cell">
           <TabInfos weatherData={data} />
         </div>
 
-        <div className="card-grid__infos">
+        <div className="card-grid__infos cell">
           <Infos
             humidity={data.main.humidity}
             pGround={data.main.grnd_level || undefined}
@@ -38,7 +38,7 @@ const WeatherBody: React.FC<WeatherBodyProps> = ({ data }) => {
           />
         </div>
 
-        <div className="card-grid__temperature">
+        <div className="card-grid__temperature cell">
           <Temperature
             temperature={data.main.temp}
             min={data.main.temp_min}
