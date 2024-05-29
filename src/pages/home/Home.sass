@@ -17,7 +17,7 @@ $primary-color: #6c63ff
 
       &__title
         font-weight: 900
-        font-size: 48px
+        font-size: 64px
         line-height: 54px
         letter-spacing: -0.025em
         max-width: 640px
@@ -79,3 +79,27 @@ $primary-color: #6c63ff
       &--main
         background-color: #6c63ff
         width: 160px
+
+
+@media screen and (max-width: $media-lg)
+  .home
+    .home-hero
+
+      .exhero
+
+        &__title
+          line-height: 1
+          font-weight: 900
+          font-size: 44px
+
+
+@media screen and (max-width: $media-sm)
+  .home
+    .home-hero
+
+      .exhero
+
+        &__title
+          line-height: 1
+          font-weight: 900
+          font-size: 34px
