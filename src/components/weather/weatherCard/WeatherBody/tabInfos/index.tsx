@@ -105,10 +105,11 @@ const TabInfos: React.FC<TabInfosProps> = ({ weatherData }) => {
 
   return (
     <>
-      <ul className="weather-tab" id="weather-tab">
-        <animated.div className="weather-tab__switch" style={{ ...springs }} />
+      <ul className="weather-tab" id="weather-tab" aria-label="Weather tab">
+        <animated.li className="weather-tab__switch" style={{ ...springs }} />
         {listTab.map((tab, index) => (
           <li
+            aria-label={tab.name}
             key={index}
             className={classNames('weather-tab__svg-box', tab.name)}
             onMouseEnter={() => handleItemHover(tab.name)}
