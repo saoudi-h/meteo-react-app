@@ -36,7 +36,7 @@ const AuthorCard: React.FC = () => {
         />
 
         <div className="author-presentation__right">
-          <h2 style={{ fontSize: '1.26rem' }}>{`${authorData.name}`}</h2>
+          <h2 style={{ fontSize: '1.26rem', lineHeight: '0' }}>{`${authorData.name}`}</h2>
           <a href={authorData.webSite.url} target="_blank" rel="noopener noreferrer">
             {authorData.webSite.name}
           </a>

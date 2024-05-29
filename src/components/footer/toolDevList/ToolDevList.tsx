@@ -4,12 +4,18 @@ import ReactSvg from '../../icons/ReactSvg'
 import ReactRouterSvg from '../../icons/ReactRouterSvg'
 import SassSvg from '../../icons/SassSvg'
 import TypeScriptSvg from '../../icons/TypeScriptSvg'
+import { AkarIconsReduxFill } from '../../icons/AkarIconsReduxFill'
+import { MdiFunction } from '../../icons/MdiFunction'
 
 const ToolDevList = () => {
   const tools: ToolDevProps[] = [
     {
       name: 'React',
       children: <ReactSvg />
+    },
+    {
+      name: 'Redux',
+      children: <AkarIconsReduxFill />
     },
     {
       name: 'React Router',
@@ -20,7 +26,11 @@ const ToolDevList = () => {
       children: <SassSvg />
     },
     {
-      name: 'Type Script',
+      name: 'Vercel Functions',
+      children: <MdiFunction />
+    },
+    {
+      name: 'Typescript',
       children: <TypeScriptSvg />
     }
   ]
