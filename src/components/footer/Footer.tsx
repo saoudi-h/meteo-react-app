@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
         <ToolDevList />
         <AuthorCard />
         <div className="footer-legal">
-          <HashLink smooth to="/about#use-local-storage">
+          <HashLink smooth to="/about#use-local-storage" className="link">
             Mentions légales
           </HashLink>
         </div>
