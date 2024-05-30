@@ -10,6 +10,7 @@ import { MouseMoveEventProvider } from './contexts/MouseMoveContext'
 import { HelmetProvider } from 'react-helmet-async'
 import store from './store/store'
 import { Provider } from 'react-redux'
+import { Analytics } from '@vercel/analytics/react'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
@@ -24,6 +25,7 @@ root.render(
         </ThemeProvider>
       </Provider>
     </HelmetProvider>
+    <Analytics />
   </React.StrictMode>
 )
 
