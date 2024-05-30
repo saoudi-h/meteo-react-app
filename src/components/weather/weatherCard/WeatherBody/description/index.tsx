@@ -22,7 +22,7 @@ const DescriptionCard: React.FC<DescriptionCardProps> = ({
   return (
     <div className="description-card">
       <img
-        src={`/images/WeatherAnimatedSvg/${icon}.svg`}
+        src={`/images/weatherAnimatedSvg/${icon}.svg`}
         alt={description}
         className="card-grid__img"
       />
