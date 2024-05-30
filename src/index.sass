@@ -48,5 +48,26 @@ body
 html,
 body
 	min-height: 100vh
+	padding: 0
+	margin: 0
 code
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace
+
+::-webkit-scrollbar
+	width: 0.4rem
+
+::-webkit-scrollbar-track
+	background: $primary-900
+	border-radius: 2px
+
+::-webkit-scrollbar-thumb
+	background: $primary-300
+	border-radius: 2px
+
+::-webkit-scrollbar-thumb:hover
+	background: $primary-200
+	border-radius: 2px
+
+html
+	scroll-snap-type: y mandatory
+	scroll-behavior: smooth
