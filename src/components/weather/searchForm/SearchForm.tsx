@@ -16,13 +16,9 @@ interface SearchFormProps {
 const SearchForm: React.FC<SearchFormProps> = ({ setHighlightedCity }) => {
   const dispatch = useDispatch()
 
-  const weatherTokenApi = process.env.REACT_APP_WEATHER_TOKEN || ''
+  const weatherAPIService: WeatherAPIService = new WeatherAPIService()
 
-  const unsplashTokenApi = process.env.REACT_APP_UNSPLASH_TOKEN || ''
-
-  const weatherAPIService: WeatherAPIService = new WeatherAPIService(weatherTokenApi)
-
-  const unsplashAPIService: UnsplashAPIService = new UnsplashAPIService(unsplashTokenApi)
+  const unsplashAPIService: UnsplashAPIService = new UnsplashAPIService()
 
   const [city, setCity] = useState('')
 
@@ -126,7 +122,11 @@ const SearchForm: React.FC<SearchFormProps> = ({ setHighlightedCity }) => {
     <div className="container">
       <form onSubmit={handleFormSearch} className="search_form">
         <div className="search_form__search">
-          <button type="submit" className="button-submit">
+          <button
+            aria-label="Rechercher la météo par ville"
+            type="submit"
+            className="button-submit"
+          >
             <SearchSvg />
           </button>
           <input
@@ -137,7 +137,12 @@ const SearchForm: React.FC<SearchFormProps> = ({ setHighlightedCity }) => {
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
-          <button className="button-location" type="button" onClick={handleGeoLocationClick}>
+          <button
+            aria-label="Rechercher la météo par géolocalisation"
+            className="button-location"
+            type="button"
+            onClick={handleGeoLocationClick}
+          >
             <LocationSvg />
           </button>
         </div>

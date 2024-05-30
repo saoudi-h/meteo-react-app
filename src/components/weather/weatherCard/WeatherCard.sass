@@ -23,7 +23,7 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
 
 .weather-card
     max-width: 600px
-    min-width: 400px
+    min-width: 250px
     overflow: hidden
     border-radius: 12px
     background-color: $primary-200
@@ -70,6 +70,7 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
             gap: 8px
             border-radius: 40px
             padding: 0px 16px
+            margin: 16px
             border: 1px solid $primary-200
             background: rgba($primary-100,.5)
             color: $primary-800
@@ -123,6 +124,29 @@ $highlight-shadow: $highlight-color 0px 20px 25px -5px, $highlight-color 0px 10p
                 &:active
                     transform: scale(0.95)
 
+
+
+@media screen and (max-width: $media-sm)
+    .weather-card
+        &.geolocation
+        &.highlight
+
+        &__header
+            display: flex
+            flex-direction: column-reverse
+            flex-
+            align-items: center
+            justify-content: space-around
+            height: 100%
+            width: 100%
+            padding: 0 20px
+
+            .header-left, .header-right
+                &__logo
+                &__info
+                    .city-name
+                    .city-date
+                    .city-time
     
 
 // @media screen (max-width: $media-sm)

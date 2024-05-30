@@ -7,15 +7,13 @@ import GeoLocationSvg from '../../icons/GeoLocationSvg'
 import TimeLocationSvg from '../../icons/TimeLocationSvg'
 import { classNames } from '../../../lib/classnames'
 import { useSpring, animated } from '@react-spring/web'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { removeWeatherData, updateWeatherData } from '../../../store/actions/weatherActions'
 import './WeatherCard.sass'
 import { formatDistanceToNow } from 'date-fns'
 import fr from 'date-fns/locale/fr'
 import WeatherBody from './WeatherBody'
-import UnsplashAPIService from '../../../services/UnsplashAPIService'
 import WeatherAPIService from '../../../services/WeatherAPIService'
-import { RootState } from '../../../store/store'
 import { toast } from 'react-toastify'
 
 interface WeatherCardProps {
@@ -28,7 +26,6 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
   highlighted
 }: WeatherCardProps) => {
   const weatherTokenApi = process.env.REACT_APP_WEATHER_TOKEN || ''
-  const unsplashTokenApi = process.env.REACT_APP_UNSPLASH_TOKEN || ''
   const weatherAPIService: WeatherAPIService = new WeatherAPIService(weatherTokenApi)
 
   const dispatch = useDispatch()
@@ -142,6 +139,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
         <div className="header-right">
           <button
             className="header-right__update"
+            aria-label="Mettre à jour la carte"
             onClick={updateCard}
             onMouseEnter={handleMouseEnterUpdate}
             data-tooltip-id="default-tooltip"
@@ -151,6 +149,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
           </button>
           <button
             className="header-right__delete"
+            aria-label="Supprimer la carte"
             onClick={removeCard}
             data-tooltip-id="default-tooltip"
             data-tooltip-content={'Supprimer'}

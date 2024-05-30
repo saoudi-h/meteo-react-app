@@ -42,7 +42,6 @@ const weatherReducer = (state = initialState, action: WeatherActionTypes): Weath
           weatherDataList: updatedList
         }
       }
-      console.log('je suis else')
       return state
 
     case 'weatherData/remove':
