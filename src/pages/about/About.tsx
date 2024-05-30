@@ -136,6 +136,8 @@ const About = () => {
               .
             </p>
 
+            <br />
+            <h2>Mentions légales</h2>
             <h3 id="use-local-storage">Utilisation du stockage local</h3>
             <p>
               Cette application utilise le stockage local (localStorage) de votre navigateur pour
