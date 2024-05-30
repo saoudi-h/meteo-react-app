@@ -18,19 +18,25 @@ const AuthorCard: React.FC = () => {
       url: 'https://hakimsaoudi.dev'
     },
     socials: {
-      github: ['https://github.com/saoudi-h', <GithubSvg />],
-      linkedIn: ['https://www.linkedin.com/in/hakim-saoudi', <LinkedInSvg />],
-      twitter: ['https://twitter.com/hakim__saoudi', <TwitterSvg />],
-      instagram: ['https://www.instagram.com/saisho_no_ippo', <InstagramSvg />]
+      github: ['https://github.com/saoudi-h', <GithubSvg />, 'Github'],
+      linkedIn: ['https://www.linkedin.com/in/hakim-saoudi', <LinkedInSvg />, 'LinkedIn'],
+      twitter: ['https://twitter.com/hakim__saoudi', <TwitterSvg />, 'Twitter'],
+      instagram: ['https://www.instagram.com/saisho_no_ippo', <InstagramSvg />, 'Instagram']
     }
   }
   return (
     <div className={classNames('author', theme)}>
       <div className="author-presentation">
-        <img src={authorData.logoUrl} alt={`${authorData.name}`} className="author-logo" />
+        <img
+          src={authorData.logoUrl}
+          alt={`${authorData.name}`}
+          className="author-logo"
+          width={200}
+          height={200}
+        />
 
         <div className="author-presentation__right">
-          <h4>{`${authorData.name}`}</h4>
+          <h2 style={{ fontSize: '1.26rem', lineHeight: '0' }}>{`${authorData.name}`}</h2>
           <a href={authorData.webSite.url} target="_blank" rel="noopener noreferrer">
             {authorData.webSite.name}
           </a>
@@ -39,7 +45,12 @@ const AuthorCard: React.FC = () => {
       <ul className="author-socials">
         {Object.entries(authorData.socials).map(([platform, data]) => (
           <li key={platform}>
-            <a href={data[0] as string} target="_blank" rel="noopener noreferrer">
+            <a
+              href={data[0] as string}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={data[2] as string}
+            >
               {data[1]}
             </a>
           </li>

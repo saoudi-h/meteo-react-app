@@ -3,16 +3,22 @@
 @import '../../../../styles/functions'
 
 .weather-card__body
+    width: 100%
     border-radius: 25px 25px 0px 0px
     background: rgba($primary-100,.5)
     color: $primary-800
     backdrop-filter: blur(4px)
     .card-grid
-        height: 200px
+        width: 100%
         display: flex
+        flex-wrap: wrap
         justify-content: space-between
         padding: 15px
         gap: 10px
+
+        .cell
+            height: 200px
+
         &__description
             flex-grow: 1
             display: flex

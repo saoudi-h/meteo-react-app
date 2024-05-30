@@ -4,6 +4,7 @@ import ToolDevList from './toolDevList/ToolDevList'
 import AuthorCard from './authorCard/AuthorCard'
 import { useTheme } from '../../contexts/ThemeContext'
 import { classNames } from '../../lib/classnames'
+import { HashLink } from 'react-router-hash-link'
 const Footer: React.FC = () => {
   const { theme } = useTheme()
   return (
@@ -12,11 +13,9 @@ const Footer: React.FC = () => {
         <ToolDevList />
         <AuthorCard />
         <div className="footer-legal">
-          <h3>Mentions légales</h3>
-          <p>
-            © COPYRIGHT {new Date().getFullYear()}&nbsp;&nbsp;&nbsp;Ce site utilise des cookies
-            pour améliorer l'expérience utilisateur.
-          </p>
+          <HashLink smooth to="/about#use-local-storage" className="link">
+            Mentions légales
+          </HashLink>
         </div>
       </div>
     </footer>

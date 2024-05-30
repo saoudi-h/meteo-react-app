@@ -91,6 +91,7 @@ const ToggleTheme: React.FC = () => {
         onMouseLeave={handleMouseLeave}
         id="sun-left"
         name="sun-left"
+        aria-label="Changer pour le thème clair"
       >
         <SunSvg />
       </button>
@@ -101,6 +102,7 @@ const ToggleTheme: React.FC = () => {
         onMouseLeave={handleMouseLeave}
         id="moon-right"
         name="moon-right"
+        aria-label="Changer pour le thème sombre"
       >
         <MoonSvg />
       </button>

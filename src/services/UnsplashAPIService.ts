@@ -1,21 +1,11 @@
 export default class UnsplashAPIService {
-  private _apiKey: string
-
-  constructor(apiKey: string) {
-    this._apiKey = apiKey
-  }
-
   private getImageUrl(query: string): Promise<string> {
-    const apiUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(
-      query
-    )}&client_id=${this._apiKey}`
+    const apiUrl = `/api/unsplash?query=${encodeURIComponent(query)}`
 
     return fetch(apiUrl)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
-        const randomImageIndex = Math.floor(Math.random() * data.results.length)
-        return data.results[randomImageIndex].urls.regular
+        return data.imageUrl
       })
   }
 
