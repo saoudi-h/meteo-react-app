@@ -4,15 +4,20 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { useSpring, animated } from '@react-spring/web'
 import { NavItem } from './navTypes'
 import NavMobile from './mobile'
+import { PhHouseFill } from '../../icons/PhHouseFill'
+import { PhCloudSunFill } from '../../icons/PhCloudSunFill'
+import { PhInfoFill } from '../../icons/PhInfoFill'
+import { PhImageBrokenFill } from '../../icons/PhImageBrokenFill'
 
 const Nav: React.FC = () => {
   const mediaMd = 768
   const [isMobile, setIsMobile] = useState(window.innerWidth <= mediaMd)
   const location = useLocation()
-  const defaultNavItems = [
-    { path: '/', name: 'Accueil' },
-    { path: '/weather', name: 'Météo' },
-    { path: '/about', name: 'À propos' }
+
+  const defaultNavItems: NavItem[] = [
+    { path: '/', name: 'Accueil', icon: PhHouseFill },
+    { path: '/weather', name: 'Météo', icon: PhCloudSunFill },
+    { path: '/about', name: 'À propos', icon: PhInfoFill }
   ]
   const [navItems, setNavItems] = useState<NavItem[]>([...defaultNavItems])
 
@@ -26,7 +31,7 @@ const Nav: React.FC = () => {
 
   const [itemPositions, setItemPositions] = useState<{ [key: string]: number }>(genItemPosition())
 
-  const notNavItems = [{ path: '/credits', name: 'crédits' }]
+  const notNavItems = [{ path: '/credits', name: 'crédits', icon: PhImageBrokenFill }]
 
   const itemLength = 100
   const marginSwitch = 3
@@ -61,7 +66,7 @@ const Nav: React.FC = () => {
     if (itemPositions[location.pathname] === undefined) {
       const unlistedItem = notNavItems.find(
         (notNavItem) => notNavItem.path === location.pathname
-      ) || { path: '/notfound', name: 'Introuveable' }
+      ) || { path: '/notfound', name: 'Introuveable', icon: PhImageBrokenFill }
       setSelectedItem(unlistedItem.path)
       setNavItems([...navItems, { ...unlistedItem }])
     } else {
@@ -143,7 +148,8 @@ const Nav: React.FC = () => {
             onMouseEnter={() => handleItemHover(item.path)}
             onMouseLeave={handleItemHoverEnd}
           >
-            <div>{item.name}</div>
+            <item.icon width="16px" height="16px" />
+            {item.name}
           </NavLink>
         </li>
       ))}

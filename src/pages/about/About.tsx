@@ -130,7 +130,12 @@ const About = () => {
               tester de nouvelles technologies et améliorer mes compétences en développement
               front-end et back-end. Vous pouvez découvrir plus de mes projets et en savoir plus sur
               mon parcours professionnel sur{' '}
-              <a href="https://hakimsaoudi.dev/" target="_new" rel="noreferrer" className="link">
+              <a
+                href="https://hakimsaoudi.dev/"
+                target="_new"
+                rel="noreferrer"
+                className="link-accent"
+              >
                 hakimsaoudi.dev
               </a>
               .

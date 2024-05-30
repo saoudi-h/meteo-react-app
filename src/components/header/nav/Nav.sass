@@ -6,6 +6,9 @@ body
             color: $primary-dark-800
             .toggle-item__switch
                 background: rgba($primary-dark-50 ,0.5 )
+        li
+            &:hover
+                color: $accent-dark-900
 
 .nav-toggle
     margin: 0
@@ -16,7 +19,6 @@ body
     flex-direction: row
     justify-content: space-between
     list-style: none
-    height: 36px
     position: relative
     padding:
         left: 3px
@@ -32,9 +34,10 @@ body
         z-index: -1
 
     li
-        margin: 0
-        width: 100px
         .link
+            display: flex
+            flex-direction: row
+            gap: 10px
             color: currentColor
             font-family: Mulish
             font-size: 14px
@@ -44,11 +47,10 @@ body
             flex-direction: row
             align-items: center
             justify-content: center
-            height: 50px
-            padding: 0 16px
+            padding: 8px 16px
 
         &:hover
-            color: $accent-dark-900
+            color: $accent-900
         div
             display: block
             white-space: nowrap

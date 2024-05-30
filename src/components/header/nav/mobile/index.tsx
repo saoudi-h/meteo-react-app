@@ -62,7 +62,8 @@ const NavMobile: React.FC<NavMobileProps> = ({ navItems }) => {
                 if (item.path !== location.pathname)
                   return (
                     <NavLink to={item.path} className="link" onClick={handleClose}>
-                      <div key={item.path}>{item.name}</div>
+                      <item.icon width="16px" height="16px" />
+                      {item.name}
                     </NavLink>
                   )
               })}
